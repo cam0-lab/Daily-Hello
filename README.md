@@ -7,6 +7,7 @@ ESADE, Launching AI-Native Ventures. Cam (Camille-Alexandre Monsef).
 ## Files
 - `index.html` — the app (one page). Open it in a browser.
 - `architecturedoc.md` — what is built, how the data works, decision log.
+- `scope.md` — what is in and out of scope, and the Definition of Done for the baseline.
 
 ## What the app does today
 - Add a parent, run a check-in call (simulated in the browser, you answer as the parent).
