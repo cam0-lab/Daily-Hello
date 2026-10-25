@@ -1,0 +1,765 @@
+<title>Daily Hello</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: brand intro, setup + scenario shortcuts, then two phones side by side (parent's call ↔ family's summary) */
+:root{
+  --bg:#eef2f0; --surface:#ffffff; --fg:#1b2724; --muted:#5b6a66; --line:#d6dedb;
+  --accent:#2c6a5a; --accent-ink:#ffffff; --accent-soft:#dcebe5;
+  --call-bg:#15201d; --call-fg:#eef4f1; --call-muted:#93a6a0; --call-bubble:#22322e; --parent-bubble:#3a5a50; --call-line:#3c4f4a;
+  --green:#257a48; --green-bg:#e0f2e6; --amber:#9a6200; --amber-bg:#fcefd4; --red:#b3261e; --red-bg:#fbe2df;
+  --hang:#d64035; --phone:#0b0f0e;
+  --display:"Fraunces", Georgia, serif; --body:"Figtree", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111816; --surface:#1a2320; --fg:#e5ecea; --muted:#98a8a3; --line:#2b3835;
+  --accent:#72bba6; --accent-ink:#0e1513; --accent-soft:#1f332d;
+  --green:#7ed49d; --green-bg:#18301f; --amber:#efb44c; --amber-bg:#372a10; --red:#f28b82; --red-bg:#3b1c19; --phone:#000; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111816; --surface:#1a2320; --fg:#e5ecea; --muted:#98a8a3; --line:#2b3835;
+  --accent:#72bba6; --accent-ink:#0e1513; --accent-soft:#1f332d;
+  --green:#7ed49d; --green-bg:#18301f; --amber:#efb44c; --amber-bg:#372a10; --red:#f28b82; --red-bg:#3b1c19; --phone:#000; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:grid;gap:28px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.01em}
+.logo{width:34px;height:34px;border-radius:10px;background:var(--accent);display:grid;place-items:center;flex:none}
+.logo svg{width:20px;height:20px}
+.hero{display:grid;gap:14px;padding-block:8px 4px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3.1rem);line-height:1.08;margin:0;max-width:18ch;text-wrap:balance}
+.lede{color:var(--muted);font-size:1.1rem;margin:0;max-width:56ch}
+.points{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.points li{font-size:.85rem;font-weight:500;background:var(--accent-soft);color:var(--accent);padding:4px 12px;border-radius:99px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:14px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;align-items:start}
+h2{font-family:var(--display);font-weight:500;font-size:1.3rem;margin:0}
+.sub{color:var(--muted);margin:-8px 0 0;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+label{display:grid;gap:4px;font-size:.82rem;font-weight:600;color:var(--muted)}
+input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0;width:100%}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button{font:inherit;font-weight:600;border-radius:10px;padding:11px 18px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)}
+button.ghost{background:transparent;color:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.err{color:var(--red);font-size:.88rem;margin:0}
+.hint{font-size:.82rem;color:var(--muted)}
+.mode{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:max-content;max-width:100%}
+.mode button{border:none;border-radius:0;background:transparent;color:var(--muted);padding:8px 14px;font-size:.88rem}
+.mode button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.scen{display:grid;gap:10px}
+.scen button{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;text-align:left;background:var(--bg);color:var(--fg);border-color:var(--line);padding:12px 14px}
+.scen button:hover:not(:disabled){border-color:var(--accent)}
+.scen .sw{width:12px;height:12px;border-radius:50%}
+.scen b{display:block}
+.scen small{color:var(--muted);font-weight:400}
+.stage{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;align-items:start}
+.col{display:grid;gap:10px;justify-items:center;min-width:0}
+.col-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.phone{width:100%;max-width:350px;height:680px;border-radius:40px;padding:12px;background:var(--phone);box-shadow:0 20px 50px -24px rgba(0,0,0,.45)}
+.screen{height:100%;border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+.call{background:var(--call-bg);color:var(--call-fg)}
+.call-top{padding:26px 18px 12px;text-align:center;display:grid;gap:4px;justify-items:center}
+.avatar{width:62px;height:62px;border-radius:50%;background:#2c6a5a;display:grid;place-items:center;position:relative}
+.avatar svg{width:28px;height:28px}
+.avatar.speaking::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid #72bba6;animation:pulse 1.2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.95);opacity:1}to{transform:scale(1.25);opacity:0}}
+.call-name{font-weight:600;font-size:1.05rem}
+.call-status{font-size:.85rem;color:var(--call-muted);font-variant-numeric:tabular-nums}
+.badge{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--call-line);color:var(--call-muted);border-radius:99px;padding:1px 8px}
+.transcript{flex:1;overflow-y:auto;padding:8px 14px;display:flex;flex-direction:column;gap:8px}
+.b{padding:8px 12px;border-radius:14px;max-width:86%;font-size:.9rem;line-height:1.4}
+.b.agent{background:var(--call-bubble);align-self:flex-start;border-bottom-left-radius:4px}
+.b.parent{background:var(--parent-bubble);align-self:flex-end;border-bottom-right-radius:4px}
+.b.note{align-self:center;background:transparent;color:var(--call-muted);font-size:.78rem;text-align:center}
+.dots span{display:inline-block;width:6px;height:6px;margin:0 2px;border-radius:50%;background:var(--call-muted);animation:blink 1s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{50%{opacity:.25}}
+.call-bottom{padding:10px 14px 18px;display:grid;gap:10px}
+.samples{display:flex;flex-wrap:wrap;gap:6px}
+.samples button{font-size:.8rem;font-weight:500;padding:6px 10px;border-radius:99px;background:transparent;color:var(--call-fg);border-color:var(--call-line);text-align:left}
+.answer{display:grid;grid-template-columns:1fr auto;gap:6px;margin-top:8px}
+.answer input{background:#0f1715;color:var(--call-fg);border-color:var(--call-line);font-size:.9rem;padding:8px 10px}
+.answer button{padding:8px 12px;font-size:.85rem}
+.controls{display:flex;justify-content:center;gap:22px;align-items:center}
+.round{width:54px;height:54px;border-radius:50%;padding:0;display:grid;place-items:center;border:none}
+.round svg{width:24px;height:24px}
+.round.start{background:#2e8b57;color:#fff}
+.round.end{background:var(--hang);color:#fff}
+.round.mute{background:#2b3a36;color:var(--call-fg)}
+.round.mute[aria-pressed="true"]{background:var(--call-fg);color:var(--call-bg)}
+.idle{flex:1;display:grid;place-items:center;text-align:center;padding:24px;color:var(--call-muted);font-size:.9rem}
+.fam{background:var(--bg);color:var(--fg)}
+.fam-top{padding:24px 18px 12px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.fam-top .logo{width:28px;height:28px;border-radius:8px}
+.fam-top .logo svg{width:16px;height:16px}
+.fam-title{font-weight:700}
+.fam-body{flex:1;overflow-y:auto;padding:14px;display:grid;gap:12px;align-content:start}
+.empty{text-align:center;color:var(--muted);font-size:.9rem;padding:24px 12px;display:grid;gap:6px}
+.status{border-radius:16px;padding:14px;display:grid;gap:4px}
+.status .lvl{font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:8px}
+.status .dot{width:12px;height:12px;border-radius:50%;background:currentColor;flex:none}
+.status .when{font-size:.8rem;opacity:.85}
+.g{background:var(--green-bg);color:var(--green)} .a{background:var(--amber-bg);color:var(--amber)} .r{background:var(--red-bg);color:var(--red)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:8px}
+.box h3{margin:0;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.box h3 span{font-weight:500;letter-spacing:0;text-transform:none}
+.box p{margin:0;font-size:.92rem}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{border-radius:10px;padding:8px 10px;font-size:.82rem;display:grid;gap:2px;min-width:0}
+.chk.none{background:var(--bg);color:var(--muted)}
+.chk b{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.why{font-size:.8rem;color:var(--muted);margin:0}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.day{display:grid;gap:4px;justify-items:center;font-size:.7rem;color:var(--muted)}
+.day .bar{width:100%;height:34px;border-radius:6px}
+.day.today{color:var(--fg);font-weight:700}
+.day .bar.pending{background:var(--bg);border:1px dashed var(--line)}
+.weektext{font-size:.85rem;margin:0}
+.callback{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.callback span{font-variant-numeric:tabular-nums;font-weight:600;user-select:all}
+.callback button{padding:7px 12px;font-size:.82rem}
+.foot{font-size:.8rem;color:var(--muted);text-align:center;max-width:62ch;margin:0 auto}
+.saved{display:grid;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.85rem;font-weight:500;padding:6px 12px;border-radius:99px;background:var(--bg);color:var(--fg);border:1px solid var(--line)}
+.chip[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.chip small{color:var(--muted);font-weight:400;margin-left:4px}
+button.small{padding:7px 12px;font-size:.82rem}
+.norm{display:grid;gap:6px}
+.nrow{display:grid;grid-template-columns:7.2em 1fr;gap:8px;font-size:.84rem;align-items:baseline}
+.nrow b{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.nrow .off{color:var(--amber)}
+.habits{display:flex;flex-wrap:wrap;gap:6px}
+.habit{font-size:.78rem;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:2px 10px}
+.meter{height:6px;border-radius:99px;background:var(--bg);overflow:hidden}
+.meter span{display:block;height:100%;background:var(--accent)}
+.cmp{display:grid;gap:6px}
+.note{font-size:.84rem;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+.tag{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:2px 6px;white-space:nowrap}
+.tag.usual{background:var(--green-bg);color:var(--green)}
+.tag.unusual{background:var(--amber-bg);color:var(--amber)}
+.tag.learning{background:var(--accent-soft);color:var(--accent)}
+.generic{font-size:.78rem;color:var(--muted);margin:0}
+@media (prefers-reduced-motion:reduce){.avatar.speaking::after,.dots span{animation:none}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>Daily Hello</div>
+    <h1>A friendly call for your parent, every single day.</h1>
+    <p class="lede">Daily Hello rings your parent on the phone they already have, has a real conversation, and tells you how they're doing. If something sounds wrong, you know right away.</p>
+    <ul class="points"><li>No app for your parent</li><li>No devices to install</li><li>Their own language</li><li>Learns each parent's normal</li><li>Summary after every call</li></ul>
+  </header>
+
+  <div class="cards">
+    <section class="card" aria-labelledby="setupH">
+      <h2 id="setupH">Try it yourself</h2>
+      <p class="sub">Pick or add a parent, then play their part in the call. Nobody is actually called. Every call is saved to that parent's history.</p>
+      <div class="grid">
+        <label for="pname">Parent's name<input id="pname" value="Margaret"></label>
+        <label for="pphone">Phone number<input id="pphone" type="tel" value="+44 7700 900123"></label>
+        <label for="plang">Language
+          <select id="plang"><option value="en">English</option><option value="es">Español</option><option value="fr">Français</option></select>
+        </label>
+        <label for="ptime">Daily call time<input id="ptime" type="time" value="10:00"></label>
+      </div>
+      <div class="row" id="modeRow" hidden>
+        <div class="mode" role="group" aria-label="Conversation type">
+          <button type="button" id="modeAI" aria-pressed="true">AI conversation</button>
+          <button type="button" id="modeScript" aria-pressed="false">Fixed script</button>
+        </div>
+        <span class="hint" id="modeHint">The agent listens and asks follow-ups.</span>
+      </div>
+      <div class="saved"><span class="hint">Saved parents (each has their own call history)</span><div class="chips" id="chips"></div></div>
+      <p class="err" id="setupErr" hidden></p>
+      <div class="row"><button id="saveBtn">Save and try a call</button><span class="hint">Turn your sound on.</span><button class="ghost small" type="button" id="resetBtn">Reset example history</button></div>
+    </section>
+
+    <section class="card" aria-labelledby="scenH">
+      <h2 id="scenH">Watch a sample call</h2>
+      <p class="sub">One click plays a full call and shows what the family receives.</p>
+      <div class="scen">
+        <button type="button" data-scen="good"><span class="sw" style="background:var(--green)"></span><span><b>A good day</b><small>Slept well, ate, plans with a friend</small></span></button>
+        <button type="button" data-scen="lonely"><span class="sw" style="background:var(--amber)"></span><span><b>A lonely day</b><small>Skipped breakfast, feeling low</small></span></button>
+        <button type="button" data-scen="fall"><span class="sw" style="background:var(--red)"></span><span><b>A fall</b><small>Fell yesterday and is in pain</small></span></button>
+      </div>
+    </section>
+  </div>
+
+  <div class="stage">
+    <div class="col">
+      <span class="col-label">Your parent's phone</span>
+      <div class="phone"><div class="screen call">
+        <div class="call-top">
+          <div class="avatar" id="avatar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></div>
+          <div class="call-name">Daily Hello</div>
+          <div class="call-status" id="callStatus">Waiting for setup</div>
+          <span class="badge" id="callMode" hidden></span>
+        </div>
+        <div class="idle" id="idle">Set up a parent and press the green button, or pick a sample call.</div>
+        <div class="transcript" id="transcript" hidden aria-live="polite"></div>
+        <div class="call-bottom">
+          <div id="answerBox" hidden>
+            <div class="samples" id="samples"></div>
+            <div class="answer">
+              <input id="ans" aria-label="Parent's answer" placeholder="Or type what they say">
+              <button id="sendBtn">Reply</button>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="round mute" id="muteBtn" aria-pressed="false" aria-label="Mute agent voice" title="Mute agent voice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></button>
+            <button class="round start" id="startBtn" aria-label="Start call" title="Start call" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></button>
+            <button class="round end" id="endBtn" aria-label="End call" title="End call" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="col">
+      <span class="col-label">Your phone</span>
+      <div class="phone"><div class="screen fam">
+        <div class="fam-top"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span><span class="fam-title" id="famTitle">Margaret · this week</span></div>
+        <div class="fam-body">
+          <div id="today"><div class="empty"><strong>No call yet today</strong><span>Today's summary shows up here as soon as the call ends.</span></div></div>
+          <div class="box" id="normBox"></div>
+          <div class="box" id="weekBox">
+            <h3>Last 7 calls <span id="weekTag"></span></h3>
+            <div class="week" id="week"></div>
+            <p class="weektext" id="weekText"></p>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <p class="foot">Daily Hello is a daily check-in, not an emergency service or medical advice. A red flag means "call them now", not a diagnosis. Calls are saved in this browser only, separately for each parent, and never shared between families. Earlier days marked "example" are sample history.</p>
+</div>
+
+<script>
+/* Daily Hello — check-in call demo with a per-parent baseline (the Session 5 defence).
+   Every call is saved as one structured record under that parent. Flags and follow-up
+   questions are compared to the parent's own normal, built from their last 14 calls. */
+const LANGNAME={en:"English",es:"Spanish",fr:"French"};
+const L = {
+  en:{hi:n=>`Good morning ${n}, it's Daily Hello calling.`, bye:n=>`Thank you ${n}. Have a lovely day, I'll call you tomorrow.`,
+    q:[["sleep","How did you sleep last night?",["Very well, thank you","Not great, I was up a lot"]],
+       ["eat","Have you had something to eat today?",["Yes, I had breakfast","I didn't eat, I'm not hungry"]],
+       ["meds","Did you take your medication this morning?",["Yes, I took it","I forgot"]],
+       ["mood","How are you feeling today?",["I feel good","A bit lonely","I fell yesterday and my hip hurts"]],
+       ["plans","Anything planned for today?",["Lunch with a friend","Nothing, staying home"]]],
+    red:["fell","fall","fallen","chest pain","can't breathe","bleeding","dizzy","confused","hospital","ambulance"],
+    amber:["hurt","pain","sore","didn't eat","not hungry","skipped","forgot","not great","tired","lonely","sad","alone","up a lot","sick","unwell","low"]},
+  es:{hi:n=>`Buenos días ${n}, le llama Daily Hello.`, bye:n=>`Gracias ${n}. Que tenga un buen día, le llamo mañana.`,
+    q:[["sleep","¿Qué tal ha dormido esta noche?",["Muy bien, gracias","Regular, me desperté mucho"]],
+       ["eat","¿Ha comido algo hoy?",["Sí, he desayunado","No he comido, no tengo hambre"]],
+       ["meds","¿Se ha tomado la medicación esta mañana?",["Sí, me la he tomado","Se me olvidó"]],
+       ["mood","¿Cómo se encuentra hoy?",["Me encuentro bien","Un poco sola","Me caí ayer y me duele la cadera"]],
+       ["plans","¿Tiene algún plan para hoy?",["Comer con una amiga","Nada, me quedo en casa"]]],
+    red:["me caí","caída","dolor en el pecho","no puedo respirar","mareo","mareada","confundid","hospital","ambulancia","sangre"],
+    amber:["duele","dolor","no he comido","no tengo hambre","olvid","regular","cansad","sola","solo","triste","enferm","desperté mucho"]},
+  fr:{hi:n=>`Bonjour ${n}, c'est Daily Hello qui vous appelle.`, bye:n=>`Merci ${n}. Bonne journée, je vous rappelle demain.`,
+    q:[["sleep","Comment avez-vous dormi cette nuit ?",["Très bien, merci","Pas terrible, je me suis souvent réveillée"]],
+       ["eat","Avez-vous mangé quelque chose aujourd'hui ?",["Oui, j'ai pris mon petit-déjeuner","Je n'ai pas mangé, je n'ai pas faim"]],
+       ["meds","Avez-vous pris vos médicaments ce matin ?",["Oui, je les ai pris","J'ai oublié"]],
+       ["mood","Comment vous sentez-vous aujourd'hui ?",["Je me sens bien","Un peu seule","Je suis tombée hier et j'ai mal à la hanche"]],
+       ["plans","Vous avez prévu quelque chose aujourd'hui ?",["Déjeuner avec une amie","Rien, je reste à la maison"]]],
+    red:["tombé","chute","douleur à la poitrine","respire mal","vertige","confus","hôpital","ambulance","saign"],
+    amber:["mal","douleur","pas mangé","pas faim","oubli","pas terrible","fatigué","seule","seul","triste","malade","réveillé"]}
+};
+const TOPICS=["sleep","eat","meds","mood"];
+const LABEL={sleep:"Sleep",eat:"Food",meds:"Medication",mood:"Mood"};
+const DAYN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+const DAYFULL=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const MIN_CALLS=5, WINDOW=14;
+const $=id=>document.getElementById(id);
+
+/* ---------- call store: one record per call, keyed by parent ---------- */
+const STORE="dailyhello.calls.v1";
+let DB={};
+function loadDB(){ try{ const s=localStorage.getItem(STORE); DB=s?JSON.parse(s):{}; }catch(e){ DB={}; } if(!DB||typeof DB!=="object") DB={}; }
+function saveDB(){ try{ localStorage.setItem(STORE,JSON.stringify(DB)); }catch(e){} }
+const keyOf=(name,phone)=>name.trim().toLowerCase()+"|"+String(phone).replace(/\D/g,"");
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const dateOf=s=>{ const [y,m,d]=s.split("-").map(Number); return new Date(y,m-1,d); };
+const todayStr=()=>ymd(new Date());
+/* past calls only: today's call never counts towards today's baseline */
+const pastCalls=id=>((DB[id]&&DB[id].calls)||[]).filter(c=>c.date!==todayStr()).sort((a,b)=>a.date<b.date?-1:1);
+
+/* matching mentions ("lunch with Joan" ~ "Lunch with my friend Joan") */
+const STOP=new Set("the with and for her his our their some your have had going went today usual usually this that friend friends yes later".split(" "));
+const toks=s=>String(s).toLowerCase().replace(/[^\p{L}\s]/gu," ").split(/\s+/).filter(w=>w.length>2&&!STOP.has(w));
+const sameThing=(a,b)=>{ const B=new Set(toks(b)); return toks(a).some(w=>B.has(w)); };
+
+/* ---------- the baseline ---------- */
+function baseline(id){
+  const cs=pastCalls(id).slice(-WINDOW);
+  const b={n:cs.length,ready:cs.length>=MIN_CALLS,topics:{},habits:[]};
+  TOPICS.forEach(k=>{ const v=cs.map(c=>c.checks&&c.checks[k]).filter(x=>x!=null);
+    const off=v.filter(x=>x>=1).length; b.topics[k]={n:v.length,off,rate:v.length?off/v.length:0}; });
+  const groups=[];
+  cs.forEach(c=>(c.mentions||[]).forEach(m=>{ let g=groups.find(g=>sameThing(g.label,m)); if(!g){ g={label:m,dates:[]}; groups.push(g); } g.dates.push(c.date); }));
+  groups.forEach(g=>{ if(g.dates.length<2) return;
+    const wd={}; g.dates.forEach(d=>{ const w=dateOf(d).getDay(); wd[w]=(wd[w]||0)+1; });
+    const top=Object.entries(wd).sort((a,b)=>b[1]-a[1])[0];
+    b.habits.push({label:g.label,count:g.dates.length,weekday:top[1]>=2?Number(top[0]):null}); });
+  b.habits.sort((a,b)=>b.count-a.count);
+  return b;
+}
+const todayHabit=b=>b.habits.find(h=>h.weekday===new Date().getDay())||null;
+function normText(k,t){
+  if(!t.n) return "No answers yet";
+  const d={sleep:["Usually sleeps well","Often sleeps badly"],eat:["Eats regularly","Often skips meals"],meds:["Takes it on time","Often forgets"],mood:["Usually in good spirits","Often low"]}[k];
+  return t.rate>=.5?`${d[1]} (${t.off} of ${t.n})`:`${d[0]} (${t.n-t.off} of ${t.n})`;
+}
+/* context handed to the AI agent before each call */
+function historyContext(id,name){
+  const cs=pastCalls(id); if(!cs.length) return `This is the first call with ${name}. There is no history yet, so do not refer to earlier calls.`;
+  const b=baseline(id), last=cs[cs.length-1], parts=[];
+  const issues=TOPICS.filter(k=>last.checks&&last.checks[k]>=1).map(k=>last.notes&&last.notes[k]).filter(Boolean);
+  parts.push(`Last call (${DAYFULL[dateOf(last.date).getDay()]}): ${(last.lines||[])[0]||""}${issues.length?" Things that came up: "+issues.join("; ")+".":""}`);
+  if(b.ready) parts.push(`${name}'s normal over the last ${b.n} calls: `+TOPICS.map(k=>`${LABEL[k].toLowerCase()} - ${normText(k,b.topics[k])}`).join("; ")+".");
+  const h=todayHabit(b); if(h) parts.push(`On ${DAYFULL[h.weekday]}s ${name} usually has: ${h.label}. Ask about it by name.`);
+  const other=b.habits.filter(x=>x!==h).slice(0,3).map(x=>x.label); if(other.length) parts.push(`People and activities ${name} often mentions: ${other.join(", ")}.`);
+  return parts.join("\n");
+}
+/* compare today's call to the parent's own normal */
+function compareToNormal(res,id,name){
+  const b=baseline(id), notes=[]; let level=res.level;
+  if(!b.ready){
+    notes.push({tag:"learning",text:`Still learning ${name}'s normal: ${b.n} of ${MIN_CALLS} calls so far. Until then the flag uses general rules only.`});
+    return {level,notes,generic:res.level,n:b.n};
+  }
+  const amber=TOPICS.filter(k=>res.checks[k]&&res.checks[k].level===1), usual=[];
+  amber.forEach(k=>{ const t=b.topics[k];
+    if(t.n>=MIN_CALLS-1&&t.rate>=.5){ usual.push(k); notes.push({tag:"usual",text:`${LABEL[k]}: usual for ${name} (${t.off} of the last ${t.n} calls), so on its own it does not raise the flag.`}); }
+    else if(t.rate<=.25) notes.push({tag:"unusual",text:`${LABEL[k]}: unusual for ${name}. It was fine in ${t.n-t.off} of the last ${t.n} calls.`});
+    else notes.push({tag:"unusual",text:`${LABEL[k]}: comes up sometimes for ${name} (${t.off} of ${t.n} calls).`}); });
+  if(res.level===1&&amber.length&&amber.every(k=>usual.includes(k))) level=0;
+  const h=todayHabit(b);
+  if(h){
+    if((res.mentions||[]).some(m=>sameThing(m,h.label))) notes.push({tag:"usual",text:`${cap(h.label)}: the usual ${DAYFULL[h.weekday]} plan for ${name}.`});
+    else { notes.push({tag:"unusual",text:`${name} usually has ${h.label} on ${DAYFULL[h.weekday]}s (${h.count} times in the last ${b.n} calls). Not mentioned today.`}); level=Math.max(level,1); }
+  }
+  if(res.level===2) level=2;
+  if(!notes.length) notes.push({tag:"usual",text:`In line with ${name}'s normal over the last ${b.n} calls.`});
+  return {level,notes,generic:res.level,n:b.n};
+}
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---------- example history: two parents, 14 days each ---------- */
+function seedExamples(){
+  const t=new Date();
+  const put=(profile,days)=>{ const id=keyOf(profile.name,profile.phone); DB[id]={profile,calls:[]};
+    days.forEach((d,i)=>{ const dt=new Date(t); dt.setDate(t.getDate()-(days.length-i)); DB[id].calls.push({...d,date:ymd(dt),example:true}); }); };
+  const M=[];
+  const ms=[1,1,0,1,1,0,1,1,1,0,1,0,1,1];
+  for(let i=0;i<14;i++){
+    const knee=i===13, forgot=i===9;
+    M.push({checks:{sleep:ms[i],eat:0,meds:forgot?1:0,mood:0},
+      notes:{sleep:knee?"Sore knee, slept badly":ms[i]?"Up a few times in the night":"Slept well",eat:"Breakfast as usual",meds:forgot?"Forgot morning tablets":"Taken",mood:"Cheerful"},
+      mentions:i===0||i===7?["lunch with Joan"]:i===3||i===10?["working in the garden"]:i===5||i===12?["phone call with David"]:[],
+      flag:forgot||knee?1:(i<5?ms[i]:0),
+      lines:[knee?"Mentioned a sore knee and slept badly.":forgot?"Forgot her morning tablets.":ms[i]?"Slept badly as usual, otherwise fine.":"A good day."]});
+  }
+  put({name:"Margaret",phone:"+44 7700 900123",lang:"en",time:"10:00"},M);
+  const G=[];
+  for(let i=0;i<14;i++){
+    G.push({checks:{sleep:0,eat:i===4?1:0,meds:0,mood:0},
+      notes:{sleep:"Slept well",eat:i===4?"Skipped lunch":"Ate well",meds:"Taken",mood:"Good spirits"},
+      mentions:i===0||i===7?["Sunday mass"]:[1,3,5,8,10,12].includes(i)?["coffee with Antoine"]:[],
+      flag:i===4?1:0, lines:[i===4?"Skipped lunch, otherwise well.":"Slept well and in good spirits."]});
+  }
+  put({name:"Georges",phone:"+961 3 123 456",lang:"en",time:"09:30"},G);
+  saveDB();
+}
+
+/* ---------- call state ---------- */
+let st=null, langCode="en", lang=L.en, script=[], habitAsked=null, i=0, answers=[], transcript=[], muted=false, t0=0, timer=null, running=false;
+let sample=null, aiMode=false, ctl=null, todayResult=null, scenRunning=false, aiPref=true;
+
+/* ---------- voice ---------- */
+const canSpeak="speechSynthesis" in window;
+function voiceFor(code){ if(!canSpeak) return null; return speechSynthesis.getVoices().find(x=>x.lang.toLowerCase().startsWith(code))||null; }
+function speak(text){
+  return new Promise(res=>{
+    if(!canSpeak||muted){ setTimeout(res,450); return; }
+    try{
+      const u=new SpeechSynthesisUtterance(text); u.rate=.95; u.lang=langCode;
+      const v=voiceFor(langCode); if(v) u.voice=v;
+      $("avatar").classList.add("speaking");
+      let ended=false; const done=()=>{ if(ended) return; ended=true; $("avatar").classList.remove("speaking"); res(); };
+      u.onend=done; u.onerror=done; speechSynthesis.speak(u);
+      setTimeout(done, 4000+text.length*90);
+    }catch(e){ $("avatar").classList.remove("speaking"); res(); }
+  });
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+/* ---------- call screen ---------- */
+function bubble(cls,text){ const d=document.createElement("div"); d.className="b "+cls; d.textContent=text; $("transcript").append(d); $("transcript").scrollTop=1e6; return d; }
+function thinking(){ const d=bubble("agent",""); d.innerHTML='<span class="dots" aria-label="Thinking"><span></span><span></span><span></span></span>'; return d; }
+function clock(){ const s=Math.floor((Date.now()-t0)/1000); $("callStatus").textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`; }
+async function agentSays(text,el){ if(el) el.textContent=text; else bubble("agent",text); transcript.push({who:"agent",text}); $("answerBox").hidden=true; await speak(text); }
+function showReplies(list){
+  $("samples").innerHTML="";
+  list.slice(0,3).forEach(s=>{ const b=document.createElement("button"); b.type="button"; b.textContent=s; b.onclick=()=>reply(s); $("samples").append(b); });
+  $("ans").value=""; $("answerBox").hidden=false;
+}
+function beginCall(label){
+  running=true; i=0; answers=[]; transcript=[]; t0=Date.now();
+  $("idle").hidden=true; $("transcript").hidden=false; $("transcript").innerHTML="";
+  $("startBtn").hidden=true; $("endBtn").hidden=false;
+  $("callMode").hidden=false; $("callMode").textContent=label;
+  clock(); timer=setInterval(clock,1000);
+  todayResult=null; renderToday("progress");
+}
+function stopCall(){ running=false; clearInterval(timer); ctl&&ctl.abort(); if(canSpeak) speechSynthesis.cancel(); $("avatar").classList.remove("speaking");
+  $("answerBox").hidden=true; $("endBtn").hidden=true; $("startBtn").hidden=false; }
+
+/* ---------- fixed script, personalised from the history ---------- */
+function buildScript(){
+  const qs=lang.q.map(q=>[q[0],q[1],q[2].slice()]); habitAsked=null;
+  if(langCode!=="en") return qs;
+  const b=baseline(st.id), cs=pastCalls(st.id), last=cs[cs.length-1];
+  const h=todayHabit(b);
+  if(h){ habitAsked=h; qs[4]=["plans",`Today is ${DAYFULL[h.weekday]}. Usually that means ${h.label}. Is that still the plan?`,["Yes, I'm going later","Not today, I don't feel like it"]]; }
+  const k=last&&TOPICS.find(t=>last.checks&&last.checks[t]>=1&&last.notes&&last.notes[t]);
+  if(k) qs.unshift(["followup",`Last time you mentioned: ${last.notes[k].toLowerCase()}. How is that today?`,["Much better, thank you","Still the same"]]);
+  return qs;
+}
+async function askScripted(){
+  if(!running) return;
+  const [,text,samples]=script[i];
+  await agentSays(text); if(!running) return;
+  showReplies(samples);
+}
+
+/* ---------- AI flow ---------- */
+function convoText(){ return transcript.map(t=>`${t.who==="agent"?"Daily Hello":st.name}: ${t.text}`).join("\n"); }
+async function aiTurn(){
+  if(!running) return;
+  const turns=transcript.filter(t=>t.who==="agent").length;
+  const prompt=`You are Daily Hello, a warm phone companion making the daily check-in call to ${st.name}, an older person living alone. You are speaking on the phone, in ${LANGNAME[langCode]}.
+Rules for what you say:
+- 1 or 2 short spoken sentences per turn, simple everyday words, no lists, no emojis, no stage directions.
+- Over the call, cover naturally: how they slept, whether they ate, whether they took their medication, how they feel, and their plans today. One topic at a time.
+- If an answer sounds worrying (pain, a fall, not eating, loneliness, confusion), ask one gentle follow-up before moving on.
+- Never give medical advice or a diagnosis. If they mention a fall, chest pain, trouble breathing or confusion, kindly tell them you will let their family know right away.
+- What you know from earlier calls with ${st.name}:
+${historyContext(st.id,st.name)}
+  Use this to ask specific questions (name the people and activities), and bring up one thing from the last call early. Never invent history that is not listed here.
+- When all topics are covered, or after at most 9 of your turns, say a warm goodbye and set "done" to true. This is turn ${turns+1}.
+${turns===0?`Start the call: greet ${st.name} by name and say it's Daily Hello calling, then ask your first question.`:"Conversation so far:\n"+convoText()}
+
+Reply with only JSON: {"say": "what you say next", "done": false, "replies": ["...", "...", "..."]}
+"replies" are 3 short, different things ${st.name} might plausibly answer next, in ${LANGNAME[langCode]}, written in first person: one positive, one mildly worrying, one more serious. Empty array when done is true.`;
+  const el=thinking(); ctl=new AbortController();
+  try{
+    const r=await sample.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal});
+    if(!running) return;
+    const say=String((r&&r.say)||"").trim(); if(!say) throw {code:"invalid_json"};
+    await agentSays(say,el); if(!running) return;
+    if(r.done||turns>=9){ finish(); return; }
+    showReplies(Array.isArray(r.replies)&&r.replies.length?r.replies.map(String):script[Math.min(i,script.length-1)][2]);
+  }catch(e){
+    if((e&&e.code)==="cancelled"||!running) return;
+    el.remove();
+    if(["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(e&&e.code)){ sample=null; setupModeUI(); }
+    aiMode=false; bubble("note","AI conversation isn't available right now, so the call continues with the fixed questions.");
+    $("callMode").textContent="Fixed script";
+    i=Math.min(answers.length,script.length-1); askScripted();
+  }
+}
+
+/* ---------- replies ---------- */
+async function reply(text){
+  text=String(text).trim(); if(!text||!running) return;
+  $("answerBox").hidden=true; bubble("parent",text); transcript.push({who:"parent",text});
+  if(aiMode){ answers.push({key:null,text}); aiTurn(); return; }
+  answers.push({key:script[i][0],text}); i++;
+  if(i<script.length) askScripted();
+  else { await agentSays(lang.bye(st.name)); finish(); }
+}
+
+/* ---------- summary ---------- */
+function levelOf(text){
+  const t=text.toLowerCase();
+  const red=[...lang.red,...L.en.red].filter(w=>t.includes(w)); if(red.length) return {lvl:2,hits:red};
+  const am=[...lang.amber,...L.en.amber].filter(w=>t.includes(w)); if(am.length) return {lvl:1,hits:am};
+  return {lvl:0,hits:[]};
+}
+const NO=/\b(no|not|nothing|don't|didn't|won't|nada|rien|pas)\b/i;
+function ruleSummary(){
+  const per=answers.map(a=>({...a,...levelOf(a.text)}));
+  const lvl=Math.max(0,...per.map(p=>p.lvl));
+  const worries=per.filter(p=>p.lvl>0);
+  const lines=[
+    lvl===0?`${st.name} sounded well today and answered every question.`:lvl===1?`${st.name} mentioned a couple of things worth following up.`:`${st.name} said something that needs your attention today.`,
+    worries.length?`What came up: ${worries.map(w=>`“${w.text}”`).join(", ")}.`:`Slept, ate and took medication as usual.`,
+    per.length?`Last thing said: “${per[per.length-1].text}”.`:""
+  ];
+  const checks={};
+  TOPICS.forEach(k=>{ const p=per.find(x=>x.key===k); if(p) checks[k]={level:p.lvl,note:p.text}; });
+  const mentions=[];
+  const plan=per.find(p=>p.key==="plans");
+  if(plan&&!NO.test(plan.text)) mentions.push(habitAsked?habitAsked.label:plan.text.replace(/[.!]+$/,""));
+  const reason=worries.length?`Flagged because of the words ${[...new Set(worries.flatMap(w=>w.hits))].map(h=>`“${h}”`).join(", ")}.`:"";
+  return {level:lvl,lines,checks,reason,mentions};
+}
+async function aiSummary(){
+  const known=baseline(st.id).habits.map(h=>h.label);
+  const prompt=`Below is today's check-in phone call between Daily Hello and ${st.name}, an older person. Write the summary their adult child will read on their phone, in English.
+Earlier context:
+${historyContext(st.id,st.name)}
+Transcript:
+${convoText()}
+
+Reply with only JSON:
+{"level": 0, "lines": ["...", "...", "..."], "checks": {"sleep": {"level": 0, "note": "..."}, "eat": {"level": 0, "note": "..."}, "meds": {"level": 0, "note": "..."}, "mood": {"level": 0, "note": "..."}}, "reason": "...", "mentions": ["..."]}
+- level: 0 = all fine, 1 = something to keep an eye on (poor sleep, skipped a meal, forgot medication, low mood, loneliness, mild pain), 2 = call them now (a fall, chest pain, trouble breathing, confusion, serious pain, not eating with pain).
+- lines: exactly 3 short plain sentences: overall, what came up, today's plans or the next step for the family.
+- checks: a level and a note of 6 words or fewer for each topic; omit a topic that was not discussed.
+- reason: one sentence on why this level, or "" when level is 0.
+- mentions: people and activities ${st.name} is doing today or did today, 2 to 4 words each, e.g. "lunch with Joan". Empty array if none.${known.length?` If it is the same thing as one of these, use exactly this wording: ${known.join("; ")}.`:""}
+No medical advice or diagnosis.`;
+  ctl=new AbortController();
+  const r=await sample.json(prompt,{modelTier:"quick",cache:false,signal:ctl.signal});
+  const lv=n=>Math.max(0,Math.min(2,Number(n)||0));
+  const checks={}; for(const k of TOPICS) if(r&&r.checks&&r.checks[k]) checks[k]={level:lv(r.checks[k].level),note:String(r.checks[k].note||"")};
+  return {level:lv(r.level),lines:(Array.isArray(r.lines)?r.lines:[]).slice(0,3).map(String),checks,reason:String(r.reason||""),mentions:(Array.isArray(r.mentions)?r.mentions:[]).map(String).slice(0,4)};
+}
+/* compare to the normal, then save one structured record for this parent */
+function recordCall(res,secs,time){
+  const cmp=compareToNormal(res,st.id,st.name);
+  res.final=cmp.level; res.cmp=cmp; res.secs=secs; res.time=time;
+  if(cmp.level<res.level&&res.lines.length){ res.lines[0]=`${st.name} sounded like their usual self today.`; res.reason=""; }
+  DB[st.id]=DB[st.id]||{profile:{name:st.name,phone:st.phone,lang:langCode,time:st.time},calls:[]};
+  const rec={date:todayStr(),checks:{},notes:{},mentions:res.mentions||[],flag:cmp.level,genericFlag:res.level,lines:res.lines,example:false};
+  TOPICS.forEach(k=>{ if(res.checks[k]){ rec.checks[k]=res.checks[k].level; rec.notes[k]=res.checks[k].note; } });
+  DB[st.id].calls=DB[st.id].calls.filter(c=>c.date!==rec.date).concat(rec);
+  saveDB();
+  todayResult=res; renderToday(); renderWeek(); renderNormal(); renderChips();
+}
+async function finish(){
+  const secs=Math.round((Date.now()-t0)/1000), wasAI=aiMode;
+  running=false; clearInterval(timer); $("answerBox").hidden=true; $("endBtn").hidden=true; $("startBtn").hidden=false;
+  $("callStatus").textContent="Call ended";
+  let res=null;
+  if(wasAI&&sample&&answers.length){
+    renderToday("writing");
+    try{ res=await aiSummary(); }catch(e){ res=null; }
+  }
+  if(!res) res=ruleSummary();
+  recordCall(res,secs,new Date().toTimeString().slice(0,5));
+}
+
+/* ---------- family view ---------- */
+const LVL=["g","a","r"];
+function renderToday(state){
+  const b=$("today"); b.innerHTML="";
+  if(!todayResult){
+    const msg={progress:["Call in progress",`Daily Hello is talking with ${st?st.name:"your parent"} right now.`],
+               writing:["Writing today's summary","This takes a few seconds."]}[state]||["No call yet today","Today's summary shows up here as soon as the call ends."];
+    b.innerHTML='<div class="empty"><strong></strong><span></span></div>';
+    b.querySelector("strong").textContent=msg[0]; b.querySelector("span").textContent=msg[1]; return;
+  }
+  const r=todayResult, lv=r.final;
+  const s=document.createElement("div"); s.className="status "+LVL[lv];
+  s.innerHTML='<div class="lvl"><span class="dot"></span><span></span></div><div class="when"></div>';
+  s.querySelector(".lvl span:last-child").textContent=[`All good with ${st.name}`,"Something to keep an eye on",`Call ${st.name} now`][lv];
+  s.querySelector(".when").textContent=`Today ${r.time} · ${Math.max(1,Math.round(r.secs/60))} min call · saved to ${st.name}'s history`;
+  b.append(s);
+  const cm=document.createElement("div"); cm.className="box";
+  cm.innerHTML=`<h3>Compared to ${st.name}'s normal <span></span></h3><div class="cmp"></div>`;
+  cm.querySelector("h3 span").textContent=r.cmp.n?`last ${r.cmp.n} calls`:"";
+  r.cmp.notes.forEach(n=>{ const d=document.createElement("div"); d.className="note"; d.innerHTML='<span class="tag"></span><span></span>';
+    d.querySelector(".tag").classList.add(n.tag); d.querySelector(".tag").textContent={usual:"Normal for them",unusual:"Unusual",learning:"Learning"}[n.tag];
+    d.lastChild.textContent=n.text; cm.querySelector(".cmp").append(d); });
+  if(r.cmp.generic!==lv){ const g=document.createElement("p"); g.className="generic"; g.textContent=`General rules alone would have flagged this ${["green","amber","red"][r.cmp.generic]}.`; cm.append(g); }
+  b.append(cm);
+  const sum=document.createElement("div"); sum.className="box"; sum.innerHTML="<h3>Summary</h3>";
+  r.lines.filter(Boolean).forEach(l=>{ const p=document.createElement("p"); p.textContent=l; sum.append(p); });
+  if(r.reason){ const w=document.createElement("p"); w.className="why"; w.textContent=r.reason; sum.append(w); }
+  b.append(sum);
+  const ck=document.createElement("div"); ck.className="box"; ck.innerHTML='<h3>Today\'s checks</h3><div class="checks"></div>';
+  TOPICS.forEach(k=>{
+    const p=r.checks[k], c=document.createElement("div");
+    c.className="chk "+(p?LVL[p.level]:"none");
+    c.innerHTML="<b></b><span></span>"; c.querySelector("b").textContent=LABEL[k];
+    c.querySelector("span").textContent=p?p.note:"Not discussed";
+    ck.querySelector(".checks").append(c);
+  });
+  b.append(ck);
+  if(lv>0){
+    const cb=document.createElement("div"); cb.className="box";
+    cb.innerHTML='<h3></h3><div class="callback"><span></span><button class="ghost" type="button">Copy number</button></div>';
+    cb.querySelector("h3").textContent=`Call ${st.name}`; cb.querySelector("span").textContent=st.phone;
+    const btn=cb.querySelector("button");
+    btn.onclick=()=>{ try{ navigator.clipboard.writeText(st.phone).then(()=>btn.textContent="Copied",()=>btn.textContent="Select the number to copy"); }catch(e){ btn.textContent="Select the number to copy"; } };
+    b.append(cb);
+  }
+}
+function renderNormal(){
+  const box=$("normBox"); if(!st){ box.hidden=true; return; } box.hidden=false;
+  const b=baseline(st.id); box.innerHTML="";
+  const h=document.createElement("h3"); h.textContent=`${st.name}'s normal`;
+  const sp=document.createElement("span"); sp.textContent=b.n?`built from ${b.n} call${b.n>1?"s":""}`:""; h.append(sp); box.append(h);
+  if(!b.ready){
+    const p=document.createElement("p"); p.textContent=b.n?`Learning ${st.name}'s normal: ${b.n} of ${MIN_CALLS} calls. Flags use general rules until then.`:`No calls yet. Daily Hello starts learning ${st.name}'s normal from the first call.`;
+    const m=document.createElement("div"); m.className="meter"; m.innerHTML="<span></span>"; m.firstChild.style.width=`${Math.min(100,b.n/MIN_CALLS*100)}%`;
+    box.append(p,m); return;
+  }
+  const n=document.createElement("div"); n.className="norm";
+  TOPICS.forEach(k=>{ const t=b.topics[k], row=document.createElement("div"); row.className="nrow";
+    row.innerHTML="<b></b><span></span>"; row.querySelector("b").textContent=LABEL[k];
+    const v=row.querySelector("span"); v.textContent=normText(k,t); if(t.rate>=.5) v.className="off"; n.append(row); });
+  box.append(n);
+  if(b.habits.length){ const hs=document.createElement("div"); hs.className="habits";
+    b.habits.slice(0,4).forEach(x=>{ const c=document.createElement("span"); c.className="habit"; c.textContent=x.weekday!=null?`${cap(x.label)} · ${DAYFULL[x.weekday]}s`:`${cap(x.label)} · ${x.count}×`; hs.append(c); });
+    box.append(hs); }
+}
+function renderWeek(){
+  const w=$("week"); w.innerHTML="";
+  const past=st?pastCalls(st.id).slice(-6):[];
+  const days=past.map(c=>({lvl:c.flag,label:DAYN[dateOf(c.date).getDay()],note:(c.lines||[])[0]||"",ex:c.example}));
+  while(days.length<6) days.unshift({lvl:null,label:"",note:"No call"});
+  days.push({lvl:todayResult?todayResult.final:null,label:"Today",today:true});
+  days.forEach(d=>{
+    const el=document.createElement("div"); el.className="day"+(d.today?" today":"");
+    const bar=document.createElement("div"); bar.className="bar "+(d.lvl==null?"pending":LVL[d.lvl]);
+    if(d.lvl!=null) bar.style.background=`var(--${["green","amber","red"][d.lvl]})`;
+    bar.title=d.today?(todayResult?"Today":"No call yet"):d.note;
+    el.append(bar); el.append(document.createTextNode(d.label||"·")); w.append(el);
+  });
+  $("weekTag").textContent=past.some(c=>c.example)?"includes example history":"saved calls";
+  const n=st?st.name:"";
+  const good=past.filter(c=>c.flag===0).length, watch=past.filter(c=>c.flag===1).length, red=past.filter(c=>c.flag===2).length;
+  let txt=past.length?`Before today: ${good} green, ${watch} amber${red?`, ${red} red`:""}.`:"No earlier calls yet.";
+  if(todayResult) txt+= todayResult.final===2?` Today is red. ${n} needs a call now.`:todayResult.final===1?` Today has something to watch.`:` Today was a normal day for ${n}.`;
+  $("weekText").textContent=txt;
+}
+function renderChips(){
+  const c=$("chips"); c.innerHTML="";
+  Object.entries(DB).forEach(([id,p])=>{ const b=document.createElement("button"); b.type="button"; b.className="chip";
+    b.setAttribute("aria-pressed",String(!!st&&st.id===id));
+    b.textContent=p.profile.name; const s=document.createElement("small"); s.textContent=`${p.calls.length} calls`; b.append(s);
+    b.onclick=()=>selectParent(id); c.append(b); });
+}
+
+/* ---------- parents ---------- */
+function selectParent(id){
+  const p=DB[id]; if(!p) return;
+  stopCall();
+  $("pname").value=p.profile.name; $("pphone").value=p.profile.phone; $("plang").value=p.profile.lang||"en"; $("ptime").value=p.profile.time||"10:00";
+  st={id,name:p.profile.name,phone:p.profile.phone,time:p.profile.time||"10:00"}; langCode=p.profile.lang||"en"; lang=L[langCode];
+  $("callStatus").textContent=`Ready to call ${st.name}`; $("callMode").hidden=true;
+  $("idle").hidden=false; $("transcript").hidden=true;
+  $("idle").textContent=`Press the green button to start today's call with ${st.name}. You'll answer as ${st.name}.`;
+  $("startBtn").disabled=false; $("famTitle").textContent=st.name;
+  const t=(p.calls||[]).find(c=>c.date===todayStr()&&!c.example);
+  todayResult=null; renderToday(); renderWeek(); renderNormal(); renderChips();
+}
+
+/* ---------- scenarios (Margaret) ---------- */
+const SCEN={
+  good:[
+    ["Good morning Margaret, it's Daily Hello calling. Yesterday you mentioned a sore knee. How is it today?","Much better, I put some ice on it."],
+    ["I'm glad. How did you sleep?","Not great, I was up a few times. Same as always."],
+    ["Have you had breakfast yet?","Yes, toast and a cup of tea."],
+    ["And did you take your morning tablets?","Yes, right after breakfast."],
+    ["Wonderful. It's Sunday, so is lunch with Joan still on?","Yes, she's picking me up at twelve."],
+    ["That sounds lovely. Enjoy your lunch, I'll call you tomorrow.",null]],
+  lonely:[
+    ["Good morning Margaret, it's Daily Hello calling. How did you sleep last night?","Not great, I was up a lot."],
+    ["I'm sorry to hear that. Was anything keeping you awake?","Just thinking. The house is very quiet."],
+    ["That sounds hard. Have you had something to eat this morning?","No, I skipped breakfast. I'm not hungry."],
+    ["Could you have a little something, even a piece of fruit? Did you take your tablets?","Yes, I took them."],
+    ["Good. It's Sunday. Are you seeing Joan for lunch today?","No. I don't feel like going out. A bit lonely, to be honest."],
+    ["Thank you for telling me. I'll let your family know you'd love a call. Take care Margaret.",null]],
+  fall:[
+    ["Good morning Margaret, it's Daily Hello calling. How did you sleep last night?","Badly. I fell yesterday evening."],
+    ["Oh no, I'm sorry. Are you hurt anywhere?","My hip hurts when I walk."],
+    ["That needs looking at. Are you able to move around the house safely?","Slowly, holding the furniture."],
+    ["Have you eaten anything today?","I didn't eat, it hurts to stand in the kitchen."],
+    ["I'm going to let your family know right away so someone can check on you. Please sit down and rest until they call.","Alright, thank you."],
+    ["Your family is being told now. Take care Margaret.",null]]
+};
+const SCEN_RESULT={
+  good:{level:1,lines:["Margaret sounded cheerful today.","Her knee is much better after icing it. She slept badly again.","She's having lunch with Joan today."],
+    checks:{sleep:{level:1,note:"Up a few times"},eat:{level:0,note:"Toast and tea"},meds:{level:0,note:"Taken after breakfast"},mood:{level:0,note:"Cheerful, sociable"}},reason:"",mentions:["lunch with Joan"]},
+  lonely:{level:1,lines:["Margaret sounded low and said she feels lonely.","She slept badly, skipped breakfast and is not seeing Joan today.","A call from you today would help."],
+    checks:{sleep:{level:1,note:"Up a lot, overthinking"},eat:{level:1,note:"Skipped breakfast"},meds:{level:0,note:"Taken"},mood:{level:1,note:"Lonely, quiet house"}},
+    reason:"Skipped a meal and feels lonely.",mentions:[]},
+  fall:{level:2,lines:["Margaret fell yesterday evening and her hip hurts when she walks.","She is moving slowly around the house and hasn't eaten because standing hurts.","Call her now and arrange for someone to check on her today."],
+    checks:{sleep:{level:1,note:"Slept badly after fall"},eat:{level:2,note:"Not eaten, too painful"},mood:{level:1,note:"Shaken but calm"}},
+    reason:"A fall with ongoing hip pain and not eating.",mentions:[]}
+};
+async function playScenario(key){
+  if(scenRunning) return;
+  const mid=keyOf("Margaret","+44 7700 900123"); if(!DB[mid]) seedExamples();
+  scenRunning=true; document.querySelectorAll("[data-scen]").forEach(b=>b.disabled=true); $("saveBtn").disabled=true;
+  selectParent(mid);
+  beginCall("Sample call");
+  const lines=SCEN[key];
+  for(let k=0;k<lines.length&&running;k++){
+    const [a,p]=lines[k];
+    const el=thinking(); await wait(600); if(!running) break;
+    await agentSays(a,el); if(!running||p==null) break;
+    await wait(500); const pb=bubble("parent",""); pb.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';
+    await wait(900); if(!running) break;
+    pb.textContent=p; transcript.push({who:"parent",text:p});
+    await wait(500);
+  }
+  if(running){
+    running=false; clearInterval(timer); $("endBtn").hidden=true; $("startBtn").hidden=false; $("callStatus").textContent="Call ended";
+    const res=JSON.parse(JSON.stringify(SCEN_RESULT[key]));
+    recordCall(res,Math.round((Date.now()-t0)/1000)+90,new Date().toTimeString().slice(0,5));
+  }
+  scenRunning=false; document.querySelectorAll("[data-scen]").forEach(b=>b.disabled=false); $("saveBtn").disabled=false;
+}
+
+/* ---------- setup & controls ---------- */
+function setupModeUI(){
+  $("modeRow").hidden=!sample;
+  $("modeAI").setAttribute("aria-pressed",String(!!sample&&aiPref));
+  $("modeScript").setAttribute("aria-pressed",String(!(sample&&aiPref)));
+  $("modeHint").textContent=aiPref?"The agent listens, uses the parent's history and asks follow-ups.":"Five questions, personalised from the parent's history.";
+}
+$("modeAI").onclick=()=>{ aiPref=true; setupModeUI(); };
+$("modeScript").onclick=()=>{ aiPref=false; setupModeUI(); };
+$("saveBtn").onclick=()=>{
+  const name=$("pname").value.trim(), phone=$("pphone").value.trim();
+  if(!name||!phone){ $("setupErr").textContent="Add your parent's name and phone number to continue."; $("setupErr").hidden=false; return; }
+  $("setupErr").hidden=true;
+  const id=keyOf(name,phone);
+  DB[id]=DB[id]||{profile:{},calls:[]};
+  DB[id].profile={name,phone,lang:$("plang").value,time:$("ptime").value||"10:00"}; saveDB();
+  selectParent(id); $("startBtn").focus();
+};
+$("startBtn").onclick=async()=>{
+  if(!st||scenRunning) return;
+  aiMode=!!sample&&aiPref; script=buildScript();
+  beginCall(aiMode?"AI conversation":"Fixed script");
+  if(aiMode){ aiTurn(); }
+  else { await agentSays(lang.hi(st.name)); askScripted(); }
+};
+$("endBtn").onclick=()=>{
+  const had=answers.length; stopCall(); $("callStatus").textContent="Call ended early";
+  if(had&&!scenRunning) recordCall(ruleSummary(),Math.round((Date.now()-t0)/1000),new Date().toTimeString().slice(0,5));
+  else if(!scenRunning){ todayResult=null; renderToday(); }
+};
+$("resetBtn").onclick=()=>{ DB={}; seedExamples(); selectParent(keyOf("Margaret","+44 7700 900123")); };
+$("sendBtn").onclick=()=>reply($("ans").value);
+$("ans").addEventListener("keydown",e=>{ if(e.key==="Enter") reply($("ans").value); });
+$("muteBtn").onclick=()=>{ muted=!muted; $("muteBtn").setAttribute("aria-pressed",String(muted)); if(muted&&canSpeak) speechSynthesis.cancel(); };
+document.querySelectorAll("[data-scen]").forEach(b=>b.onclick=()=>playScenario(b.dataset.scen));
+if(canSpeak) speechSynthesis.getVoices();
+
+loadDB();
+if(!Object.keys(DB).length) seedExamples();
+selectParent(DB[keyOf("Margaret","+44 7700 900123")]?keyOf("Margaret","+44 7700 900123"):Object.keys(DB)[0]);
+setupModeUI();
+(async()=>{ try{ sample=window.claude&&window.claude.use?await window.claude.use("sample"):null; }catch(e){ sample=null; } setupModeUI(); })();
+</script>
