@@ -59,17 +59,16 @@ Each call adds to a personal baseline for that parent. The agent compares each n
 ## Decision log
 | Date | Decision | Why |
 |---|---|---|
-| Session 5 | Data cycle as the one defense | Only advantage I can own; the software itself can be copied in an afternoon |
-| Session 5 | One structured record per call, per parent | Smallest first step of the baseline |
-| Session 5 | Baseline never shared outside the family | Trust, and health-type data |
-| Session 6 | No hardware (product choice made earlier, not a sprint cut) | Keeps the product to a phone call |
-| Session 6 | Used the sprint to demo the existing MVP, no new feature | Wanted feedback on the full product and the pitch |
-| Session 6 | No real users touched the app, so no security check | Demo on sample data only |
-| 25 Oct | Built the baseline into the app (save, compare, personalise questions) | First working piece of the Session 5 defence |
-| 25 Oct | Browser localStorage instead of SQLite for now | No server yet; keeps data in one family's browser; SQLite when real calls start |
-| 25 Oct | Baseline only after 5 calls, window of 14 calls | Too few calls gives a fake "normal"; 14 keeps it recent |
-| 25 Oct | Red never lowered by the baseline | A fall is never "normal for them" |
-| 25 Oct | Show the rules-only flag next to the baseline flag | Family can see why the flag differs; easier to trust |
+| Data cycle as the one defense | Only advantage I can own; the software itself can be copied in an afternoon |
+| One structured record per call, per parent | Smallest first step of the baseline |
+| Baseline never shared outside the family | Trust, and health-type data |
+| No hardware (product choice made earlier, not a sprint cut) | Keeps the product to a phone call |
+| No real users touched the app, so no security check | Demo on sample data only |
+| Built the baseline into the app (save, compare, personalise questions) | First working piece of the Session 5 defence |
+| Browser localStorage instead of SQLite for now | No server yet; keeps data in one family's browser; SQLite when real calls start |
+| Baseline only after 5 calls, window of 14 calls | Too few calls gives a fake "normal"; 14 keeps it recent |
+| Red never lowered by the baseline | A fall is never "normal for them" |
+| Show the rules-only flag next to the baseline flag | Family can see why the flag differs; easier to trust |
 
 ## Feedback
 - Session 6 demo: make the pitch emotional (the child, the community) and target the right cultures.
