@@ -1,81 +1,75 @@
-# Daily Hello — Architecture Document
+# Talmeez — Architecture Document
 
-Last updated: 25 October 2026 (after Session 6: per-parent baseline built into the app)
+Last updated: 19 November 2026. Full AI design: `docs/ai-native.md`. Product rules: `docs/product-rules.md`.
 
 ## What the product does
-An AI agent calls an elderly parent once a day for a short conversation, then sends the adult child (the buyer) a summary with a green, amber or red flag. No hardware: the parent only needs the phone they already have.
+Parents in Lebanon can't easily find a tutor they trust for their child's exact class and exam, so they ask in WhatsApp groups. On Talmeez a parent types one sentence and gets tutors who teach that class, with a reason for each match. The parent messages the tutor on Talmeez. Tutors pay a subscription after 2 free leads.
 
-## What is built today (index.html, one page)
-1. **Setup form + saved parents**: the adult child adds a parent (name, phone, language, call time). Each parent has their own call history.
-2. **Check-in call (simulated)**: the call runs in the browser. The agent's voice is the browser's speech synthesis. The person testing types or taps the parent's answers. No real phone call is placed.
-3. **Two conversation modes**:
-   - *AI conversation*: an LLM runs the call (through the Claude artifact runtime). It gets the parent's history before the call and asks follow-ups.
-   - *Fixed script*: five questions, personalised from the history (asks about last call's issue and the parent's usual plan for that weekday).
-4. **Summary + flag**: AI summary (or keyword rules as fallback) gives a level per topic: sleep, food, medication, mood, plus the people and activities mentioned.
-5. **Baseline comparison (the defence)**: the flag is compared to that parent's own normal before the family sees it. See "Baseline logic".
-6. **Family view**: today's flag, "Compared to [name]'s normal", summary, checks, "[name]'s normal" panel, and the last 7 saved calls.
-7. **Example history**: two example parents (Margaret, Georges) with 14 days of calls each, marked as example data, so the baseline can be shown without real users.
+## Numbers today (from the database, 19 Nov)
+- 113 tutors and 11 parents signed up, all for free.
+- Nobody pays yet.
+- The old site had 3 session requests in total (April, May and September 2026), none since.
+- The new site, which counts leads, is not live yet, so counted leads = 0.
 
-## Not built yet
-- Real phone calls (telephony + realtime voice agent).
-- A server and a real database.
-- Sending the summary to the family (WhatsApp/SMS).
-- Consent flow for the parent, login for the family.
+## How it is built
+```
+ web (Next.js) ─┐
+ Expo app ──────┼──► brain (Edge Function, typed tools) ──► Postgres (Supabase)
+ admin ─────────┤            │
+ MCP for AIs ───┘            ▼
+                       Claude API ──► ai_runs log
+```
+- **Brain:** one server function with typed tools (`parse_query`, `search_tutors`, `explain_match`, `classify_message`, `suggest_replies`, `translate`, `rewrite_bio`, `analyse_week`). The site, the app, admin and other AIs all call the same tools, so behaviour is the same everywhere.
+- **Models:** Haiku for parsing, classifying and translating; Sonnet for match reasons, bio rewrites and the weekly analysis.
+- **Fallback:** a keyword parser and regex rules run on every search and message. If the AI is off, over budget or wrong, the site still works.
+- **Database:** Supabase (Postgres) with row-level security on every table.
+
+## The three key processes and their level of AI
+I kept the three steps from Daily Hello (call, understand and flag, report) and ran them on Talmeez.
+
+| Step | Daily Hello | Talmeez | Level of AI | Why |
+|---|---|---|---|---|
+| 1. Listen | AI phoned the parent and talked | Parent types one sentence; Claude reads subject, class, town and price, shown as editable chips | AI does it | Many searches, low risk, the parent can correct it |
+| 2. Understand and flag | AI compared answers with the parent's normal: green, amber, red | AI flags shared phone numbers, an agreed booking, a child's name or street (removed), searches with no tutor | AI flags, never blocks | A wrong block loses a lead, so a person can always overrule |
+| 3. Report | AI wrote a 3-line summary for the family | Weekly AI report with what changed, where people drop off, missing tutors, and up to 3 proposed changes with evidence | AI proposes, I decide | It touches ranking, money and trust |
+
+Tutor ID checks stay human only.
 
 ## Data
-**Now (demo):** browser localStorage, key `dailyhello.calls.v1`. Data stays in the browser it was created in.
-- One entry per parent, keyed by name + phone number: `{ profile, calls[] }`
-- One structured record per call:
-  - date
-  - checks: sleep, food, medication, mood (0 green / 1 amber / 2 red each)
-  - notes per topic (short text)
-  - mentions (people and activities named, e.g. "lunch with Joan")
-  - flag (after baseline) and genericFlag (rules only)
-  - example (true for sample history)
-- One call per parent per day (a second call the same day replaces the first).
+- Each search is logged: language, what was understood, which parser was used, results shown. Clicks and messages link back to the search.
+- Each message gets a signal row (booking, contact shared, language), not the text.
+- Nightly rollups: funnel (visit → search → profile → message → lead → booking → review), demand gaps (searched with fewer than 3 tutors), tutor stats, parser quality.
+- The weekly analyst only sees rollups and anonymised samples, never names or message text.
 
-**Planned (first real users):** same record in a SQLite `calls` table on the server, keyed by parent and family. Not built yet.
+## The number I track: weekly leads
+A lead = the parent sends at least 2 messages and the tutor replies, counted once per parent and tutor. It is stored when it happens (`lead_counted_at`) and it is also what uses a tutor's free leads, so fake parents who get no answer can't burn them. It doesn't need a booking. Bookings are tracked separately.
 
-## Baseline logic
-- Built from the parent's last 14 calls, never counting today's call.
-- Used only once there are at least 5 calls. Before that the app says "Still learning [name]'s normal" and uses general rules.
-- Per topic: share of calls where it was amber or worse.
-  - Amber topic that is usual for this parent (amber in at least half of calls) is marked "Normal for them" and does not raise the flag on its own.
-  - Amber topic that is rare for this parent (25% of calls or fewer) is marked "Unusual".
-- Habits: a person or activity mentioned 2+ times on the same weekday becomes a weekly habit (e.g. lunch with Joan on Sundays). If today is that day and it is not mentioned, the call is flagged amber.
-- Red (fall, chest pain, confusion…) is never lowered by the baseline.
-- The family view always shows what general rules alone would have said when the baseline changed the flag.
-- Before each call, the agent gets: last call summary and issues, the parent's normal per topic, today's habit, people often mentioned.
+## Evals
+- `evals/search.jsonl`: 170 sentences in Arabic, French, English, Arabizi and mixed, with the expected subject, class, area and price.
+- `evals/messages.jsonl`: 108 messages, including tricky ones ("I'll think and tell you Tuesday", prices, dates).
+- Pass thresholds: 90% parse accuracy, 95% contact detection, 85% booking detection. A change that drops below fails.
+- Session 8: 15 cases (10 normal, 5 attacks) through the real code. Before: 9/10 and 4/5. The one real failure broke my red line: a child's full name and street were saved in the search log. I wrote a fix that removes names and streets before anything is logged, plus a database check. After: 5/5 attacks, nothing that worked before broke. The fix is tested but not merged into the live code yet.
 
-## Defense: data cycle (chosen in Session 5)
-Each call adds to a personal baseline for that parent. The agent compares each new call to the parent's own normal, not a generic rule, so follow-ups get more specific and false alarms drop. A competitor starts from zero for every family. Weakness (from the Session 5 AI review): the baseline is weak in the first weeks, which is exactly when families decide whether to pay.
-
-## Rules
-- A parent's baseline is **never shared outside that family**. In the demo, history lives only in the browser where it was created.
-- No hardware. Phone call only.
-- No real users or real health data in the app yet.
-- Before any real parent gets a call: security check (consent from the parent, no exposed keys, data separated per family).
+## Red line and guardrails
+- **Red line:** no child's name or address is stored. The child's name is never asked at sign-up.
+- AI never sends messages, publishes or hides reviews, approves IDs, changes prices or merges code.
+- Tutor bios and messages are treated as data, never as instructions to the AI.
+- Monthly AI budget: warning at 80%, fallbacks at 100%.
+- Everything the AI does is logged in `ai_runs`; everything an admin looks at is logged in `admin_access_log`.
 
 ## Decision log
 | Date | Decision | Why |
 |---|---|---|
-| Data cycle as the one defense | Only advantage I can own; the software itself can be copied in an afternoon |
-| One structured record per call, per parent | Smallest first step of the baseline |
-| Baseline never shared outside the family | Trust, and health-type data |
-| No hardware (product choice made earlier, not a sprint cut) | Keeps the product to a phone call |
-| No real users touched the app, so no security check | Demo on sample data only |
-| Built the baseline into the app (save, compare, personalise questions) | First working piece of the Session 5 defence |
-| Browser localStorage instead of SQLite for now | No server yet; keeps data in one family's browser; SQLite when real calls start |
-| Baseline only after 5 calls, window of 14 calls | Too few calls gives a fake "normal"; 14 keeps it recent |
-| Red never lowered by the baseline | A fall is never "normal for them" |
-| Show the rules-only flag next to the baseline flag | Family can see why the flag differs; easier to trust |
-
-## Feedback
-- Session 6 demo: make the pitch emotional (the child, the community) and target the right cultures.
-- Midterm feedback (Anupam, 21–22 Oct): the room's questions are the riskiest guess. Do parents want to talk to an AI every day? Does it fit their culture? Why a phone call and not a WhatsApp message? Answer these with real parents before building more agents.
+| End of Oct | Switched the course project from Daily Hello to Talmeez (agreed in class) | Real tutors, real data, can test with real users this term; Daily Hello had 10+ AI call competitors and no real family test |
+| 27 Oct | MVP scope: conversational search, messaging that notices, findable by other AIs, learning loop | Search is the core; the rest feeds the learning loop |
+| 27 Oct | Keyword parser always runs next to the AI | Site works if the AI fails; also a sanity check |
+| 27 Oct | AI flags messages but never blocks | A wrong block loses a lead |
+| 27 Oct | No session-replay tools (Hotjar, Clarity) | They would record parents typing about their children |
+| Nov | Lead counted only after 2 parent messages and a tutor reply | Fake parents can't use up a tutor's free leads |
+| Nov | Remove names and streets before logging (Session 8) | Red line broke in test case 14 |
+| Nov | One main judge for the AI grader (Session 9) | Keeps the judging consistent |
 
 ## Next
-1. One real family for five days: one adult child and their parent, one call a day, summary every evening. On day five, ask the adult child if they would pay to keep it.
-2. Ask real parents the three questions above and write down the answers.
-3. Before that test: security check (parent consent, keys not exposed, data separated per family).
-4. Then: one real phone call through a voice service, using the same call record.
+1. Put the new site live so leads are counted automatically.
+2. Get real parents searching: recruit through schools and parents' WhatsApp groups.
+3. 40 survey answers before Demo Day.

@@ -1,0 +1,170 @@
+{"q":"ebne bel brevet bado math b jounieh","lang":"arabizi","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-jounieh"}}
+{"q":"ابني بصف البريفيه وبدو مساعدة بالرياضيات، نحنا بجونية","lang":"ar","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-jounieh"}}
+{"q":"ma fille est en terminale et a besoin d'aide en physique, on habite à Achrafieh","lang":"fr","expect":{"subject":["physics"],"program":"FR","class_code":"FR-TERM","area":"t-achrafieh"}}
+{"q":"SAT math tutor online","lang":"en","expect":{"subject":["maths","sat"],"exam_code":"SAT","mode":"online"}}
+{"q":"prof de chimie IGCSE Zahle","lang":"mixed","expect":{"subject":["chemistry"],"program":"UK","area":"t-zahle","exam_code":"IGCSE"}}
+{"q":"Physics tutor for grade 11 in Hamra, max $25","lang":"en","expect":{"subject":["physics"],"program":"US","class_code":"US-G11","area":"t-hamra","max_price":25}}
+{"q":"My daughter is in Year 10 IGCSE and needs chemistry help in Jounieh","lang":"en","expect":{"subject":["chemistry"],"program":"UK","class_code":"UK-Y10","exam_code":"IGCSE","area":"t-jounieh"}}
+{"q":"IELTS preparation online, budget 30 dollars","lang":"en","expect":{"program":"TEST","class_code":"TEST-IELTS","exam_code":"IELTS","mode":"online","max_price":30}}
+{"q":"A-level maths tutor in Antelias","lang":"en","expect":{"subject":["maths"],"program":"UK","exam_code":"ALEVEL","area":"t-antelias"}}
+{"q":"Looking for an IB DP biology tutor near Baabda","lang":"en","expect":{"subject":["biology"],"program":"IB","area":"t-baabda"}}
+{"q":"Homework help for my son in grade 3, Zahle","lang":"en","expect":{"subject":["homework_help"],"program":"US","class_code":"US-G3","area":"t-zahle"}}
+{"q":"university calculus tutor, I'm an AUB student","lang":"en","expect":{"subject":["maths"],"program":"UNI","class_code":"UNI-COURSES","exam_code":"UNI"}}
+{"q":"English tutor for EB6 Lebanese program, at home in Dbayeh","lang":"en","expect":{"subject":["english"],"program":"LB","class_code":"LB-EB6","area":"t-dbayeh","mode":"home"}}
+{"q":"need someone for S3 SV biology and chemistry in Tripoli under 20$","lang":"en","expect":{"subject":["biology","chemistry"],"program":"LB","class_code":"LB-S3-SV","track":"SV","area":"t-tripoli","max_price":20}}
+{"q":"TOEFL tutor in Saida","lang":"en","expect":{"program":"TEST","class_code":"TEST-TOEFL","exam_code":"TOEFL","area":"t-saida"}}
+{"q":"accounting tutor for university, online","lang":"en","expect":{"subject":["accounting"],"program":"UNI","class_code":"UNI-COURSES","mode":"online"}}
+{"q":"MYP french tutor in Hazmieh","lang":"en","expect":{"subject":["french"],"program":"IB","class_code":"IB-MYP","area":"t-hazmieh"}}
+{"q":"French tutor for a 9th grader in the American system, Achrafieh, less than 15 dollars","lang":"en","expect":{"subject":["french"],"program":"US","class_code":"US-G9","area":"t-achrafieh","max_price":15}}
+{"q":"Grade 9 math tutor, Lebanese program, Jdeideh","lang":"en","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-jdeideh"}}
+{"q":"my son is 14 and struggling with equations, we live in Batroun","lang":"en","expect":{"subject":["maths"],"area":"t-batroun"}}
+{"q":"Computer science AP tutor, online, max twenty dollars","lang":"en","expect":{"subject":["computer_science"],"program":"US","mode":"online","max_price":20}}
+{"q":"Arabic tutor for Year 7 British school kid in Byblos","lang":"en","expect":{"subject":["arabic"],"program":"UK","class_code":"UK-Y7","area":"t-jbeil"}}
+{"q":"Je cherche un prof de maths pour mon fils en 3e, programme français, à Jounieh","lang":"fr","expect":{"subject":["maths"],"program":"FR","class_code":"FR-3E","exam_code":"BREVET_FR","area":"t-jounieh"}}
+{"q":"cours d'anglais pour ma fille en CM2 à Baabda, moins de 15$","lang":"fr","expect":{"subject":["english"],"program":"FR","class_code":"FR-CM2","area":"t-baabda","max_price":15}}
+{"q":"prof de philo pour Terminale LH à Zahlé","lang":"fr","expect":{"subject":["philosophy"],"program":"LB","class_code":"LB-S3-LH","track":"LH","area":"t-zahle"}}
+{"q":"Aide aux devoirs CE1 à domicile, Kaslik","lang":"fr","expect":{"subject":["homework_help"],"program":"FR","class_code":"FR-CE1","area":"t-kaslik","mode":"home"}}
+{"q":"préparation au DELF B2 en ligne","lang":"fr","expect":{"program":"TEST","class_code":"TEST-DELF","exam_code":"DELF_DALF","mode":"online"}}
+{"q":"cours de SVT pour une élève de seconde à Jbeil","lang":"fr","expect":{"subject":["biology"],"program":"FR","class_code":"FR-2NDE","area":"t-jbeil"}}
+{"q":"professeur d'arabe pour EB4, Tyr","lang":"fr","expect":{"subject":["arabic"],"program":"LB","class_code":"LB-EB4","area":"t-tyre"}}
+{"q":"Bac français, maths et physique, pas plus de 25 dollars","lang":"fr","expect":{"subject":["maths","physics"],"program":"FR","class_code":"FR-TERM","exam_code":"BAC_FR","max_price":25}}
+{"q":"cours de comptabilité à l'université, Beyrouth","lang":"fr","expect":{"subject":["accounting"],"program":"UNI","class_code":"UNI-COURSES","area":"g-beirut"}}
+{"q":"mon fils est en 1ère, il a besoin d'aide en chimie, on est à Hazmieh","lang":"fr","expect":{"subject":["chemistry"],"program":"FR","class_code":"FR-1RE","area":"t-hazmieh"}}
+{"q":"prof d'économie pour S3 ES, Nabatieh","lang":"fr","expect":{"subject":["economics"],"program":"LB","class_code":"LB-S3-ES","track":"ES","area":"t-nabatieh"}}
+{"q":"cours d'informatique pour Grade 8, système américain, à distance","lang":"fr","expect":{"subject":["computer_science"],"program":"US","class_code":"US-G8","mode":"online"}}
+{"q":"prof de maths pour EB9 à Saïda","lang":"fr","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-saida"}}
+{"q":"ma fille passe le brevet libanais, elle a besoin d'aide en français, on habite Zouk","lang":"fr","expect":{"subject":["french"],"program":"LB","class_code":"LB-EB9","exam_code":"BREVET","area":"d-keserwan"}}
+{"q":"cherche prof d'histoire-géo pour 4ème, Beit Mery, budget 20$","lang":"fr","expect":{"subject":["history_geo"],"program":"FR","class_code":"FR-4E","area":"t-beit-mery","max_price":20}}
+{"q":"بدي استاذ فيزياء لبنتي بالثالث ثانوي علوم عامة بطرابلس","lang":"ar","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","area":"t-tripoli"}}
+{"q":"معلمة لغة إنجليزية لابني بالصف السادس أساسي، بالأشرفية","lang":"ar","expect":{"subject":["english"],"program":"LB","class_code":"LB-EB6","area":"t-achrafieh"}}
+{"q":"دروس كيمياء أونلاين","lang":"ar","expect":{"subject":["chemistry"],"mode":"online"}}
+{"q":"ما بدي اكتر من ٢٠$، رياضيات للتاسع أساسي بزحلة","lang":"ar","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-zahle","max_price":20}}
+{"q":"استاذ رياضيات للبكالوريا علوم حياة بصيدا","lang":"ar","expect":{"subject":["maths"],"program":"LB","class_code":"LB-S3-SV","track":"SV","exam_code":"BAC_LB","area":"t-saida"}}
+{"q":"تحضير SAT عن بعد","lang":"ar","expect":{"program":"TEST","class_code":"TEST-SAT","exam_code":"SAT","mode":"online"}}
+{"q":"مساعدة بالفروض لابني بالصف الثالث، نحنا بالمتن","lang":"ar","expect":{"subject":["homework_help"],"program":"LB","class_code":"LB-EB3","area":"d-metn"}}
+{"q":"استاذ فلسفة لآداب وإنسانيات بالنبطية","lang":"ar","expect":{"subject":["philosophy"],"program":"LB","class_code":"LB-S3-LH","track":"LH","area":"t-nabatieh"}}
+{"q":"دروس عربي لصف رابع أساسي بصور","lang":"ar","expect":{"subject":["arabic"],"program":"LB","class_code":"LB-EB4","area":"t-tyre"}}
+{"q":"بدي حدا يعلم ابني رياضيات بالبيت بعاليه، الميزانية ١٥ دولار","lang":"ar","expect":{"subject":["maths"],"area":"t-aley","mode":"home","max_price":15}}
+{"q":"استاذ اقتصاد جامعي بجبيل","lang":"ar","expect":{"subject":["economics"],"program":"UNI","class_code":"UNI-COURSES","area":"t-jbeil"}}
+{"q":"معلم فرنسي للأول ثانوي بالبترون","lang":"ar","expect":{"subject":["french"],"program":"LB","class_code":"LB-S1","area":"t-batroun"}}
+{"q":"معلمة للروضة بالحازمية، منهج فرنسي","lang":"ar","expect":{"program":"FR","class_code":"FR-MAT","area":"t-hazmieh"}}
+{"q":"استاذ لغة انكليزية IGCSE بزحلة اقل من ٣٠ دولار","lang":"ar","expect":{"subject":["english"],"program":"UK","exam_code":"IGCSE","area":"t-zahle","max_price":30}}
+{"q":"استاذ كيمياء للثاني ثانوي علمي بصيدا، بحدود عشرين دولار","lang":"ar","expect":{"subject":["chemistry"],"program":"LB","class_code":"LB-S2-SCI","track":"SCI","area":"t-saida","max_price":20}}
+{"q":"بنتي بالصف الثامن بالمنهج الأميركي وبدها علوم","lang":"ar","expect":{"subject":["sciences"],"program":"US","class_code":"US-G8"}}
+{"q":"binte b terminale bada physique","lang":"arabizi","expect":{"subject":["physics"]}}
+{"q":"binte b terminale SV bada physique","lang":"arabizi","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SV","track":"SV"}}
+{"q":"3ande bent bel eb7 w bada 3arabe","lang":"arabizi","expect":{"subject":["arabic"],"program":"LB","class_code":"LB-EB7"}}
+{"q":"badde prof math la ebne bel tese3 asese b achrafieh","lang":"arabizi","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-achrafieh"}}
+{"q":"ebne bel grade 5 american program bado english online","lang":"arabizi","expect":{"subject":["english"],"program":"US","class_code":"US-G5","mode":"online"}}
+{"q":"fi 7ada bya3ti chimie S2 b zahle?","lang":"arabizi","expect":{"subject":["chemistry"],"program":"LB","area":"t-zahle"}}
+{"q":"ma bade aktar men 15$ bel se3a, math EB8, bjounieh","lang":"arabizi","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB8","area":"t-jounieh","max_price":15}}
+{"q":"bade prof IELTS online","lang":"arabizi","expect":{"program":"TEST","class_code":"TEST-IELTS","exam_code":"IELTS","mode":"online"}}
+{"q":"ebne bel jem3a bado mse3de bel accounting","lang":"arabizi","expect":{"subject":["accounting"],"program":"UNI","class_code":"UNI-COURSES"}}
+{"q":"binte bel IB MYP bada maths b dbayeh","lang":"arabizi","expect":{"subject":["maths"],"program":"IB","class_code":"IB-MYP","area":"t-dbayeh"}}
+{"q":"badna prof physique la S3 SG b kaslik, ta7et l 25$","lang":"arabizi","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","area":"t-kaslik","max_price":25}}
+{"q":"3ande wled bel sef talet bado homework help b hamra","lang":"arabizi","expect":{"subject":["homework_help"],"program":"LB","class_code":"LB-EB3","area":"t-hamra"}}
+{"q":"fi 7ada bi3allem falsafe la terminale LH b tripoli?","lang":"arabizi","expect":{"subject":["philosophy"],"program":"LB","class_code":"LB-S3-LH","track":"LH","area":"t-tripoli"}}
+{"q":"bade prof inglize la binte year 11 IGCSE, online","lang":"arabizi","expect":{"subject":["english"],"program":"UK","class_code":"UK-Y11","exam_code":"IGCSE","mode":"online"}}
+{"q":"ebne b tene sanawe 3elmi bado riyadiyet b saida","lang":"arabizi","expect":{"subject":["maths"],"program":"LB","class_code":"LB-S2-SCI","track":"SCI","area":"t-saida"}}
+{"q":"bade 7ada ye3ti ebne french bel bet, ne7na bel hazmieh","lang":"arabizi","expect":{"subject":["french"],"area":"t-hazmieh","mode":"home"}}
+{"q":"prof de maths EB9 b jounieh max 20$","lang":"mixed","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","area":"t-jounieh","max_price":20}}
+{"q":"tutor رياضيات للـ grade 10 online","lang":"mixed","expect":{"subject":["maths"],"program":"US","class_code":"US-G10","mode":"online"}}
+{"q":"ابني بالـ EB5 بدو French tutor بالحازمية","lang":"mixed","expect":{"subject":["french"],"program":"LB","class_code":"LB-EB5","area":"t-hazmieh"}}
+{"q":"physique S3 SG Achrafieh moins de 25 dollars","lang":"mixed","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","area":"t-achrafieh","max_price":25}}
+{"q":"cours IELTS بطرابلس","lang":"mixed","expect":{"program":"TEST","class_code":"TEST-IELTS","exam_code":"IELTS","area":"t-tripoli"}}
+{"q":"bade prof d'anglais pour CM1 b Zouk","lang":"mixed","expect":{"subject":["english"],"program":"FR","class_code":"FR-CM1","area":"d-keserwan"}}
+{"q":"Biology A-levels بجبيل under 30$","lang":"mixed","expect":{"subject":["biology"],"program":"UK","exam_code":"ALEVEL","area":"t-jbeil","max_price":30}}
+{"q":"مدرس computer science للجامعة online","lang":"mixed","expect":{"subject":["computer_science"],"program":"UNI","class_code":"UNI-COURSES","mode":"online"}}
+{"q":"help in maths pour ma fille en 6ème, Antelias","lang":"mixed","expect":{"subject":["maths"],"program":"FR","class_code":"FR-6E","area":"t-antelias"}}
+{"q":"binte bel CE2 bada aide aux devoirs à domicile b Mansourieh","lang":"mixed","expect":{"subject":["homework_help"],"program":"FR","class_code":"FR-CE2","area":"t-mansourieh","mode":"home"}}
+{"q":"Looking for a chemistry tutor for Year 12 A-levels, Hamra, up to $35","lang":"en","expect":{"subject":["chemistry"],"program":"UK","class_code":"UK-Y12","exam_code":"ALEVEL","area":"t-hamra","max_price":35}}
+{"q":"My son needs math help, grade 4 at an American school, Zouk","lang":"en","expect":{"subject":["maths"],"program":"US","class_code":"US-G4","area":"d-keserwan"}}
+{"q":"French tutor for DELF in Beirut","lang":"en","expect":{"program":"TEST","class_code":"TEST-DELF","exam_code":"DELF_DALF","area":"g-beirut"}}
+{"q":"Physics help for S3 SG, Lebanese Baccalaureate, Tyre, under $20","lang":"en","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","exam_code":"BAC_LB","area":"t-tyre","max_price":20}}
+{"q":"I need a Spanish tutor","lang":"en","expect":{"subject":[],"program":null,"class_code":null}}
+{"q":"tutor for kindergarten in the French program, Jbeil","lang":"en","expect":{"program":"FR","class_code":"FR-MAT","area":"t-jbeil"}}
+{"q":"Economics tutor for IB DP2, Baabda","lang":"en","expect":{"subject":["economics"],"program":"IB","class_code":"IB-DP2","area":"t-baabda"}}
+{"q":"online English lessons for my 10 year old","lang":"en","expect":{"subject":["english"],"mode":"online","class_code":null}}
+{"q":"Biology for Terminale SV in Batroun, home visit, 18 dollars max","lang":"en","expect":{"subject":["biology"],"program":"LB","class_code":"LB-S3-SV","track":"SV","area":"t-batroun","mode":"home","max_price":18}}
+{"q":"grade 12 AP calculus, online","lang":"en","expect":{"subject":["maths"],"program":"US","class_code":"US-G12","mode":"online"}}
+{"q":"history tutor for Year 9, British curriculum, Saida","lang":"en","expect":{"subject":["history_geo"],"program":"UK","class_code":"UK-Y9","area":"t-saida"}}
+{"q":"I want to learn Arabic as an adult, Beirut","lang":"en","expect":{"subject":["arabic"],"area":"g-beirut","program":null}}
+{"q":"cherche prof de physique pour ma fille en 2nde, Jounieh","lang":"fr","expect":{"subject":["physics"],"program":"FR","class_code":"FR-2NDE","area":"t-jounieh"}}
+{"q":"cours de français pour un enfant de CP, à domicile à Antelias","lang":"fr","expect":{"subject":["french"],"program":"FR","class_code":"FR-CP","area":"t-antelias","mode":"home"}}
+{"q":"soutien en maths pour le Brevet français, Hazmieh","lang":"fr","expect":{"subject":["maths"],"program":"FR","class_code":"FR-3E","exam_code":"BREVET_FR","area":"t-hazmieh"}}
+{"q":"tuteur pour le TOEFL, en ligne, budget 40$","lang":"fr","expect":{"program":"TEST","class_code":"TEST-TOEFL","exam_code":"TOEFL","mode":"online","max_price":40}}
+{"q":"prof d'histoire pour S2 littéraire à Aley","lang":"fr","expect":{"subject":["history_geo"],"program":"LB","class_code":"LB-S2-HUM","track":"HUM","area":"t-aley"}}
+{"q":"je cherche un cours de chimie en Grade 10, école américaine, Saïda, moins de 20$","lang":"fr","expect":{"subject":["chemistry"],"program":"US","class_code":"US-G10","area":"t-saida","max_price":20}}
+{"q":"ma fille de 5ème a besoin d'un prof d'espagnol","lang":"fr","expect":{"subject":[],"program":"FR","class_code":"FR-5E"}}
+{"q":"بدي استاذ رياضيات لابني بالصف الأول أساسي بالدكوانة","lang":"ar","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB1","area":"t-dekwaneh"}}
+{"q":"معلم فيزياء لطالب بالـ Year 13 في بيروت","lang":"mixed","expect":{"subject":["physics"],"program":"UK","class_code":"UK-Y13","exam_code":"ALEVEL","area":"g-beirut"}}
+{"q":"ابنتي بالسنة الثانية بالبكالوريا الدولية IB وبدها كيمياء","lang":"ar","expect":{"subject":["chemistry"],"program":"IB","class_code":"IB-DP2"}}
+{"q":"استاذ تاريخ وجغرافيا للسابع أساسي بالنبطية بحدود ١٠ دولار","lang":"ar","expect":{"subject":["history_geo"],"program":"LB","class_code":"LB-EB7","area":"t-nabatieh","max_price":10}}
+{"q":"دروس خصوصية انكليزي أونلاين لطالبة جامعية","lang":"ar","expect":{"subject":["english"],"program":"UNI","class_code":"UNI-COURSES","mode":"online"}}
+{"q":"حدا بيعطي محاسبة بالبيت بالمتن؟","lang":"ar","expect":{"subject":["accounting"],"area":"d-metn","mode":"home"}}
+{"q":"مدرس رياضيات للصف العاشر منهج أميركي بطرابلس","lang":"ar","expect":{"subject":["maths"],"program":"US","class_code":"US-G10","area":"t-tripoli"}}
+{"q":"ابني بالتاسع وبدو مساعدة بالعلوم","lang":"ar","expect":{"subject":["sciences"]}}
+{"q":"ebne bel sef el sades bado 3arabe b batroun","lang":"arabizi","expect":{"subject":["arabic"],"area":"t-batroun"}}
+{"q":"bade prof chemistry la A level year 12 b beirut","lang":"arabizi","expect":{"subject":["chemistry"],"program":"UK","class_code":"UK-Y12","exam_code":"ALEVEL","area":"g-beirut"}}
+{"q":"7ada ybayen math la SAT bi zahle?","lang":"arabizi","expect":{"subject":["maths","sat"],"program":"TEST","class_code":"TEST-SAT","exam_code":"SAT","area":"t-zahle"}}
+{"q":"binte bel terminale ES bada economie b jbeil, 20$","lang":"arabizi","expect":{"subject":["economics"],"program":"LB","class_code":"LB-S3-ES","track":"ES","area":"t-jbeil","max_price":20}}
+{"q":"bade ostez arabe la ebne bel kg b hazmieh","lang":"arabizi","expect":{"subject":["arabic"],"area":"t-hazmieh"}}
+{"q":"3ande bent bel brevet fransawi bade math online","lang":"arabizi","expect":{"subject":["maths"],"program":"FR","class_code":"FR-3E","mode":"online"}}
+{"q":"ma fi 7ada bi tzabbet halla2 shi?","lang":"arabizi","expect":{"subject":[],"program":null,"class_code":null,"area":null,"max_price":null}}
+{"q":"hello","lang":"en","expect":{"subject":[],"program":null,"class_code":null,"area":null,"mode":null}}
+{"q":"need a prof de maths pour 5ème, Dbayeh, 20$ max","lang":"mixed","expect":{"subject":["maths"],"program":"FR","class_code":"FR-5E","area":"t-dbayeh","max_price":20}}
+{"q":"ابني IB DP1 بدو physics tutor online","lang":"mixed","expect":{"subject":["physics"],"program":"IB","class_code":"IB-DP1","mode":"online"}}
+{"q":"Math teacher wanted, Lebanese program 7th grade, Furn el Chebbak","lang":"en","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB7","area":"t-furn-el-chebbak"}}
+{"q":"afdal ostez physique la bac SG bi tripoli","lang":"arabizi","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","area":"t-tripoli"}}
+{"q":"Looking for a tutor to prepare my daughter for the SAT, she's in grade 11, Jounieh, $30/hour","lang":"en","expect":{"program":"TEST","class_code":"TEST-SAT","exam_code":"SAT","area":"t-jounieh","max_price":30}}
+{"q":"prof particulier d'espagnol ou d'allemand","lang":"fr","expect":{"subject":[],"program":null,"class_code":null}}
+{"q":"رياضيات تاسع أساسي بالبيت","lang":"ar","expect":{"subject":["maths"],"program":"LB","class_code":"LB-EB9","mode":"home"}}
+{"q":"Cherche cours particuliers de physique-chimie niveau première, Beyrouth, 30 dollars maximum","lang":"fr","expect":{"subject":["physics","chemistry"],"program":"FR","class_code":"FR-1RE","area":"g-beirut","max_price":30}}
+{"q":"my kid is in KG2 and needs someone for English, Dbayeh","lang":"en","expect":{"subject":["english"],"area":"t-dbayeh","program":null}}
+{"q":"ostez kimya la S1 b zahle w sa3et 15$","lang":"arabizi","expect":{"subject":["chemistry"],"program":"LB","class_code":"LB-S1","area":"t-zahle","max_price":15}}
+{"q":"tutor needed: Computer science, university level, Lebanese American University, Byblos","lang":"en","expect":{"subject":["computer_science"],"program":"UNI","class_code":"UNI-COURSES","area":"t-jbeil"}}
+{"q":"Hi, I'm looking for an economics tutor, IB diploma, second year, online, 40 dollars","lang":"en","expect":{"subject":["economics"],"program":"IB","class_code":"IB-DP2","mode":"online","max_price":40}}
+{"q":"ابني بالصف الخامس نظام فرنسي CM2 وبدو مادة الفرنسي","lang":"ar","expect":{"subject":["french"],"program":"FR","class_code":"FR-CM2"}}
+{"q":"cours de maths pour une élève de terminale, bac français, Jounieh, 25$","lang":"fr","expect":{"subject":["maths"],"program":"FR","class_code":"FR-TERM","exam_code":"BAC_FR","area":"t-jounieh","max_price":25}}
+{"q":"bade 7ada yshra7 el chimie la ebne bel grade 11 american","lang":"arabizi","expect":{"subject":["chemistry"],"program":"US","class_code":"US-G11"}}
+{"q":"Year 6 maths tutor in Kaslik, British school","lang":"en","expect":{"subject":["maths"],"program":"UK","class_code":"UK-Y6","area":"t-kaslik"}}
+{"q":"tutoring in biology for 3ème, home, Aley, 20 USD","lang":"fr","expect":{"subject":["biology"],"program":"FR","class_code":"FR-3E","area":"t-aley","mode":"home","max_price":20}}
+{"q":"دروس تقوية بالانكليزي للصف السابع بالضاحية","lang":"ar","expect":{"subject":["english"],"program":"LB","class_code":"LB-EB7","area":"t-dahieh"}}
+{"q":"Looking for a French tutor for adults, DELF B1, online","lang":"en","expect":{"program":"TEST","class_code":"TEST-DELF","exam_code":"DELF_DALF","mode":"online"}}
+{"q":"my son needs help with history and geography, EB8, Tripoli, max 12 dollars","lang":"en","expect":{"subject":["history_geo"],"program":"LB","class_code":"LB-EB8","area":"t-tripoli","max_price":12}}
+{"q":"can you recommend someone good for sociology S3 ES in Hamra?","lang":"en","expect":{"subject":["sociology"],"program":"LB","class_code":"LB-S3-ES","track":"ES","area":"t-hamra"}}
+{"q":"need prof de physique pour S3 SG, Jounieh","lang":"mixed","expect":{"subject":["physics"],"program":"LB","class_code":"LB-S3-SG","track":"SG","area":"t-jounieh"}}
+{"q":"bade tutor english للصف الرابع in Zahle","lang":"mixed","expect":{"subject":["english"],"area":"t-zahle"}}
+{"q":"chimie tutor pour Year 10 IGCSE online","lang":"mixed","expect":{"subject":["chemistry"],"program":"UK","class_code":"UK-Y10","exam_code":"IGCSE","mode":"online"}}
+{"q":"prof maths for my son في 6ème, Antelias, less than 20$","lang":"mixed","expect":{"subject":["maths"],"program":"FR","class_code":"FR-6E","area":"t-antelias","max_price":20}}
+{"q":"ابنتي بالـ Grade 7 بدها arabic tutor بالمتن","lang":"mixed","expect":{"subject":["arabic"],"program":"US","class_code":"US-G7","area":"d-metn"}}
+{"q":"cherche IELTS tutor online, max 25$","lang":"mixed","expect":{"program":"TEST","class_code":"TEST-IELTS","exam_code":"IELTS","mode":"online","max_price":25}}
+{"q":"SAT prep tutor, online please","lang":"en","expect":{"subject":["sat"],"exam_code":"SAT","class_code":"TEST-SAT","mode":"online"}}
+{"q":"need IELTS lessons in Tripoli","lang":"en","expect":{"subject":["ielts"],"exam_code":"IELTS","class_code":"TEST-IELTS","area":"t-tripoli"}}
+{"q":"cherche un prof pour preparer le SAT a Beyrouth","lang":"fr","expect":{"subject":["sat"],"exam_code":"SAT","area":"g-beirut"}}
+{"q":"بدي مدرس IELTS اونلاين","lang":"ar","expect":{"subject":["ielts"],"exam_code":"IELTS","mode":"online"}}
+{"q":"bade ostez la SAT math w IELTS","lang":"arabizi","expect":{"subject":["maths","sat","ielts"]}}
+{"q":"my son sat the exam yesterday and needs english help","lang":"en","expect":{"subject":["english"],"exam_code":null}}
+{"q": "math tutor in Achrafieh", "lang": "en", "expect": {"subject": ["maths"], "area": "t-achrafieh"}}
+{"q": "prof de maths à Jounieh", "lang": "fr", "expect": {"subject": ["maths"], "area": "t-jounieh"}}
+{"q": "استاذ رياضيات بالحمرا", "lang": "ar", "expect": {"subject": ["maths"], "area": "t-hamra"}}
+{"q": "bade prof math b tarik el jdide", "lang": "arabizi", "expect": {"subject": ["maths"], "area": "t-tarik-el-jdide"}}
+{"q": "chemistry tutor in Mount Lebanon", "lang": "en", "expect": {"subject": ["chemistry"], "area": "g-mount-lebanon"}}
+{"q": "prof de physique au Mont-Liban", "lang": "fr", "expect": {"subject": ["physics"], "area": "g-mount-lebanon"}}
+{"q": "tutor in Keserwan for grade 5", "lang": "en", "expect": {"area": "d-keserwan"}}
+{"q": "cours de maths à Barcelone", "lang": "fr", "expect": {"subject": ["maths"], "area": "ct-barcelona"}}
+{"q": "math tutor in Paris", "lang": "en", "expect": {"subject": ["maths"], "area": "ct-paris"}}
+{"q": "استاذ انكليزي بالبقاع", "lang": "ar", "expect": {"subject": ["english"], "area": "g-bekaa"}}
+{"q": "tutor in Sidon for physics", "lang": "en", "expect": {"subject": ["physics"], "area": "t-saida"}}
+{"q": "history tutor in Byblos", "lang": "en", "expect": {"area": "t-jbeil"}}
+{"q": "ostez math b chtaura", "lang": "arabizi", "expect": {"subject": ["maths"], "area": "t-chtaura"}}
+{"q": "math tutor in Dubai", "lang": "en", "expect": {"subject": ["maths"], "area": "ct-dubai"}}
+{"q": "prof de maths à Bourj el Barajneh", "lang": "fr", "expect": {"subject": ["maths"], "area": "t-bourj-el-barajneh"}}
+{"q": "physique S3 SG ras beirut", "lang": "fr", "expect": {"area": "t-ras-beirut"}}
+{"q": "english tutor in Trablos", "lang": "en", "expect": {"subject": ["english"], "area": "t-tripoli"}}
+{"q": "math tutor in Mar Mikhael", "lang": "en", "expect": {"subject": ["maths"], "area": "t-mar-mikhael"}}
+{"q": "حدا بيعلم رياضيات بكسروان", "lang": "ar", "expect": {"subject": ["maths"], "area": "d-keserwan"}}
+{"q": "bade ostez physique b sour", "lang": "arabizi", "expect": {"subject": ["physics"], "area": "t-tyre"}}
+{"q": "prof de maths pour 3e à Gemmayzé", "lang": "fr", "expect": {"area": "t-gemmayzeh"}}
+{"q": "math tutor, I live in the north", "lang": "en", "expect": {"subject": ["maths"], "area": null}}
+{"q": "tutor for a 10 year old in London", "lang": "en", "expect": {"area": "ct-london"}}

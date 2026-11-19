@@ -1,0 +1,108 @@
+{"text": "Great, see you Tuesday at 5!", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Perfect, let's start Monday at 4pm at your place.", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Ok, booked for Saturday 10am.", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Deal. First session Wednesday 6pm.", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Sounds good, see you tomorrow at 5:30", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Parfait, on commence lundi à 17h.", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "D'accord, à mardi 16h alors !", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "C'est noté pour samedi matin, à samedi.", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Ça marche, on se voit jeudi à 18h30", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "ok mnetla2a l 5", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "tamem mnbalesh l sabet", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "yalla mnchoufak bukra l sa3a 4", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "akid, ntla2a l arb3a 3al 6", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "تمام، منشوفك الخميس الساعة ٥", "lang": "ar", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "اتفقنا، منبلش يوم الاثنين", "lang": "ar", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "منلتقي بكرا الساعة ٤ عندكن بالبيت", "lang": "ar", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "ok parfait, mnbalesh lundi", "lang": "mixed", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Great, see you Tuesday at 5! My number is 70 123 456", "lang": "en", "expect": {"booking_signal": true, "contact_shared": true}}
+{"text": "I'll think and tell you Tuesday", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "What time are you free?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Are you available on Tuesday at 5?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Sorry, I can't make it Saturday.", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Maybe next week, I'll let you know", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Let me check with my husband and get back to you on Monday.", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Hi, my son needs help with maths for the Brevet.", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Je vais réfléchir et je vous dis mardi.", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Quels sont vos tarifs ?", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Vous êtes disponible jeudi ?", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "On pourrait peut-être commencer lundi si ça vous va ?", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "khalini fakker w b2ellak bukra", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "shu l as3ar?", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "ma fiye l sabet, sorry", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "خليني فكر وبرجع بخبرك", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "قديش سعر الساعة؟", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "ما فيي السبت، بعتذر", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "My number is 71 123 456, WhatsApp me", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "رقمي ٧١ ١٢٣ ٤٥٦", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "+961 3 123 456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "call me on 03-123-456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "Vous pouvez m'écrire sur nadine.m@gmail.com", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "wa.me/96170123456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "00961 76 543 210 merci", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "hayda ra2me 81.234.567 eb3atle msg", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "تلفوني ٠٣/٤٥٦٧٨٩", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "our landline is 01 345 678", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "my email is nadine dot m at gmail dot com", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "ra2me seb3a w tleteen, miyye w tlete w 3eshreen, arb3miyye w sette w khamsin", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "رقمي سبعين مية وعشرين تلاتمية وأربعين", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "The lesson is 20$ per hour, 2 hours a week", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "On se voit le 07/11/2026 ?", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Can I have your number?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "ebne 3omro 14 sene w bel EB9", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Send me your WhatsApp please", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "ابني عمره ١٤ سنة وبالصف التاسع، منسكن بالطابق ٣", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Order ref 12345678, paid 40$", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Yes please, let's do Thursday at 6pm, see you then", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}, "tricky": true}
+{"text": "Confirmed: first lesson Sunday 11am at our place", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "ok mnbalesh el tanen 3al 5 el 3asr", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "d'accord pour mercredi 15h, à bientôt", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "تمام منشوفك السبت الساعة ١٠ الصبح", "lang": "ar", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Perfect. I'll be at your door tomorrow at 4.", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}, "tricky": true}
+{"text": "Ok we'll take the Friday 5pm slot", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}, "tricky": true}
+{"text": "Super, rendez-vous vendredi 17h devant l'immeuble", "lang": "fr", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "yalla ok, el jem3a 3al 4 mnshoufak", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Great, I booked it in my calendar for Monday 6pm", "lang": "en", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Tamem mnetla2a bukra b el kaslik 3al 7", "lang": "arabizi", "expect": {"booking_signal": true, "contact_shared": false}}
+{"text": "Which day suits you, Monday or Wednesday?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Could we start next week instead?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "I'm not sure about Friday, my daughter has football", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "If the price is 15$ we can start Monday", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Yes I'm interested, what's your rate for grade 8 maths?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Thanks for the call yesterday. How did it go?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Mardi je ne peux pas, désolée", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Je vous confirme la semaine prochaine", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "baddi shuf ma3 zawji w bkhabrak l sabet", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "ما بعرف إذا بقدر الخميس", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Great lesson today, see you next time!", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "See you Tuesday?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Does Saturday at 10 work for you?", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Ok", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Thank you so much!", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}}
+{"text": "Message me on 71/123/456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "my whatsapp: +961 71 123 456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "tel 0 3 1 2 3 4 5 6", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "رقمي ٠٣ ١٢٣ ٤٥٦", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "ra2me 03/123456", "lang": "arabizi", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "you can reach me at lara_k@hotmail.com", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "https://wa.me/96171123456", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "call 70-123-456 after 5", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "numéro : 71.123.456", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "٠٠٩٦١ ٧٦ ٥٤٣ ٢١٠", "lang": "ar", "expect": {"booking_signal": false, "contact_shared": true}}
+{"text": "zero seven one, one two three, four five six", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "sept un, un deux trois, quatre cinq six", "lang": "fr", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "7 1 1 2 3 4 5 6", "lang": "en", "expect": {"booking_signal": false, "contact_shared": true}, "tricky": true}
+{"text": "I'm in Grade 9, EB9 exams on 2026-06-10", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "The fee is 45000 LBP, about 20$", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Room 12, building 4, floor 3", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "He scored 15 out of 20, 75% in maths", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Order 20261027, total 120$", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "my daughter is 12 and my son is 9", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "Lesson from 4 to 6 pm, 3 times a week", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text": "year 2026 fee 1200000 LBP", "lang": "en", "expect": {"booking_signal": false, "contact_shared": false}, "tricky": true}
+{"text":"٧١ ١٢٣ ٤٥٦","lang":"ar","expect":{"booking_signal":false,"contact_shared":true}}
+{"text":"رقمي ٠٣/١٢٣٤٥٦ بدك تتصل؟","lang":"ar","expect":{"booking_signal":false,"contact_shared":true},"tricky":true}
+{"text":"Appelez-moi au +961 71 123 456","lang":"fr","expect":{"booking_signal":false,"contact_shared":true}}
+{"text":"25 dollars pour 3 heures par semaine","lang":"fr","expect":{"booking_signal":false,"contact_shared":false},"tricky":true}
+{"text":"Parfait, on commence lundi à 17h","lang":"fr","expect":{"booking_signal":true,"contact_shared":false}}
+{"text":"I'll think about it and tell you Tuesday","lang":"en","expect":{"booking_signal":false,"contact_shared":false},"tricky":true}

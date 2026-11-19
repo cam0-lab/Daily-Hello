@@ -1,27 +1,25 @@
-# Daily Hello
+# Talmeez (formerly Daily Hello)
 
-An AI agent calls an elderly parent once a day for a short chat, then tells the adult child how they are with a green, amber or red flag. No hardware, just the phone the parent already has.
+ESADE, Launching AI-Native Ventures. Camille-Alexandre Monsef.
 
-ESADE, Launching AI-Native Ventures. Cam (Camille-Alexandre Monsef).
+Talmeez is a tutoring marketplace for Lebanon. A parent types one sentence ("maths tutor for my son in EB9 in Jounieh"), in Arabic, Arabizi, French or English, and gets tutors who teach that exact class, with a one-line reason for each match. Tutors have their identity checked.
+
+## Why this repo has two projects
+Sessions 1 to 6 were on Daily Hello, a daily AI phone call to an elderly parent. After Session 6 I switched my course project to Talmeez, which I had started before the course, because there I have real tutors, real data and can test with real users this term. From Session 7 on, all my work is on Talmeez.
+
+- **Talmeez (current):** the files at the top of this repo.
+- **Daily Hello (Sessions 1–6):** the `daily-hello/` folder, unchanged since 25 October.
 
 ## Files
-- `index.html` — the app (one page). Open it in a browser.
-- `architecturedoc.md` — what is built, how the data works, decision log.
-- `scope.md` — what is in and out of scope, and the Definition of Done for the baseline.
+- `architecturedoc.md`: how Talmeez works, the AI processes, data, guardrails and decision log.
+- `scope.md`: what is built, what is out of scope, the number I track and where it stands.
+- `docs/ai-native.md`: the full AI design (the brain, search, messaging, learning loop, evals, guardrails, trackers).
+- `docs/product-rules.md`: product rules (accounts, verification, class matching, leads, reviews, paywall).
+- `evals/`: the test cases the AI parts must pass (170 search sentences, 108 messages) and the pass thresholds.
+- `daily-hello/`: the earlier project.
 
-## What the app does today
-- Add a parent, run a check-in call (simulated in the browser, you answer as the parent).
-- Every call is saved to that parent's history.
-- The flag is compared to that parent's own normal (last 14 calls, from 5 calls on). Example: "slept badly" is normal for Margaret (green), unusual for Georges (amber).
-- Follow-up questions use the history ("Today is Sunday. Usually that means lunch with Joan. Is that still the plan?").
-- Two example parents with 14 days of example history are loaded on first open.
+The app code is in a separate private repository because it holds the live site's configuration. I can give access on request.
 
-## Not built yet
-Real phone calls, a server, sending summaries to the family. No real users or real health data.
-
-## Try it
-1. Open `index.html`.
-2. Pick Georges, press the green button, answer "Not great, I was up a lot" to the sleep question. Flag: amber, "unusual for Georges".
-3. Pick Margaret, give the same answer. Flag: green, "usual for Margaret".
-
-The AI conversation mode needs the Claude artifact runtime. Opened as a plain file, the app uses the fixed script.
+## Links
+- Live site (old version): https://talmeez.me
+- New version: being rebuilt, not live yet.
